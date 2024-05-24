@@ -1,0 +1,76 @@
+#! this got capped becaue the api is shit
+
+import requests
+import api_key
+import json
+
+# Replace 'YOUR_ACCESS_TOKEN' with your valid Genius API access token
+access_token = api_key.client_access_token
+headers = {
+ 'Authorization': f'Bearer {access_token}'
+}
+
+def get_artist_id(artist_name):
+    """Fetch the artist ID by searching for the artist's name."""
+    search_url = 'https://api.genius.com/search'
+    params = {'q': artist_name}
+    response = requests.get(search_url, headers=headers, params=params)
+
+    print (response)
+    
+    if response.status_code == 200:
+        data = response.json()
+        hits = data['response']['hits']
+        for hit in hits:
+            if hit['index'] == 'song' and hit['result']['primary_artist']['name'].lower() == artist_name.lower():
+                return hit['result']['primary_artist']['id']
+    return None
+
+def get_albums_by_artist(artist_id):
+    """Fetch all albums of a specific artist by their ID."""
+    artist_albums_url = f'https://api.genius.com/artists/{artist_id}/albums'
+    response = requests.get(artist_albums_url, headers=headers)
+    print (response)
+    
+    if response.status_code == 200:
+        data = response.json()
+        albums = data['response']['albums']
+        return [(album['id'], album['name']) for album in albums]
+    return []
+
+def get_songs_in_album(album_id):
+    """Fetch all songs of a specific album by the album ID."""
+    album_tracks_url = f'https://api.genius.com/albums/{album_id}/tracks'
+    response = requests.get(album_tracks_url, headers=headers)
+    
+    if response.status_code == 200:
+        data = response.json()
+        tracks = data['response']['tracks']
+        return [(track['id'], track['title']) for track in tracks]
+    return []
+
+def get_artist_albums_and_tracks(artist_name):
+    """Given an artist name, get the albums and their tracks."""
+    artist_id = get_artist_id(artist_name)
+    if not artist_id:
+        print(f'Artist "{artist_name}" not found.')
+        return
+
+    print(f'Artist ID: {artist_id}')
+    albums = get_albums_by_artist(artist_id)
+
+    if not albums:
+        print('No albums found for this artist.')
+        return
+
+    for album_id, album_name in albums:
+        print(f'Album: {album_name} (ID: {album_id})')
+        tracks = get_songs_in_album(album_id)
+        if not tracks:
+            print('  No tracks found in this album.')
+        else:
+            for track_id, track_title in tracks:
+                print(f'  Track: {track_title} (ID: {track_id})')
+
+# Replace 'Adele' with your desired artist name
+get_artist_albums_and_tracks('Adele')

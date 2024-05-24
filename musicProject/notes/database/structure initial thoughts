@@ -1,0 +1,287 @@
+/*
+artists table 1
+  artist id: primary key
+  name
+  genre from albus
+  albums
+  collarboration network
+  vocabulary size
+  most used words
+  reading level
+  number of words
+  number of songs
+  number of chararacters in discography
+  average sentence length
+  average word length
+  average song length (words)
+  average song length (seconds)
+  overall tone/mood detection
+
+albums table 2
+  album id: primary key integer
+  artist id: artist foreign key
+  name  string
+  genre int, null
+  songs array of song ids
+  overall album sentiment can take any type or null
+  variance of sentiments of songs double, null
+  tone/mood can take any type or null
+  emotion intensity can take any type or null
+
+songs table 3
+  song id: primary key int
+  album id: foreign key int
+  artist id: foreign key array of int
+  lyrics of song string
+  number of unique words int
+  genre  ["int", "string", "double", "array", "object", "bool", "null"],
+  mood/tone ["int", "string", "double", "array", "object", "bool", "null"],
+  emotion intensity ["int", "string", "double", "array", "object", "bool", "null"],
+ 
+
+struture below
+*/
+
+
+
+/*
+!STUFF TO ADD
+song length seconds
+song length minutes
+song vocabulary size
+song reading level
+song sentiment
+
+
+
+*/
+db.createCollection("artists", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["i", "name"],
+      properties: {
+        i: {
+          bsonType: "int",
+          description: "must be an integer and is required"
+        },
+        name: {
+          bsonType: "string",
+          description: "must be a string and is required"
+        },
+        genre: {
+          bsonType: ["int", "string", "double", "array", "object", "bool", "null"],
+          description: "can be of any BSON type or null"
+        },
+        collaborationNetwork: {
+          bsonType: ["array", "null"],
+          items: {
+            bsonType: "int" // IDs of other artists
+          },
+          description: "must be an array of integers representing artist ids or null"
+        },
+
+        vocabularySize: {
+          bsonType: ["int", "null"],
+          description: "must be an integer or null"
+        },
+
+        mostUsedWords: {
+          bsonType: ["array", "null"],
+          items: {
+            bsonType: "object",
+            required: ["word", "count"],
+            properties: {
+              word: {
+                bsonType: "string",
+                description: "must be a string"
+              },
+              count: {
+                bsonType: "int",
+                description: "must be an integer"
+              }
+            }
+          },
+          description: "must be an array of objects containing a string (word) and an integer (count) or null"
+        },
+
+        readingLevel: {
+          bsonType: ["double","int", "null"],
+          description: "must be a double or null"
+        },
+
+        numberOfWords: {
+          bsonType: ["int", "null"],
+          description: "must be an integer or null"
+        },
+
+        numberOfSongs: {
+          bsonType: ["int", "null"],
+          description: "must be an integer or null"
+        },
+
+        numberOfCharacters: {
+          bsonType: ["int", "null"],
+          description: "must be an integer or null"
+        },
+
+        averageSentenceLength: {
+          bsonType: ["double", "null"],
+          description: "must be a double or null"
+        },
+
+        averageWordLength: {
+          bsonType: ["double", "null"],
+          description: "must be a double or null"
+        },
+
+        averageSongLengthWords: {
+          bsonType: ["int", "null"],
+          description: "must be an integer or null"
+        },
+
+        averageSongLengthSeconds: {
+          bsonType: ["int", "null"],
+          description: "must be an integer or null"
+        },
+
+        overallToneMood: {
+          bsonType: ["int", "string", "double", "array", "object", "bool", "null"],
+          description: "can be of any BSON type or null"
+        }
+      }
+    }
+  }
+});
+
+// Creating a unique index for the `id` field
+db.artists.createIndex({ i: 1 }, { unique: true });
+
+db.artists.insertOne({
+  id: -1,
+  name: "test dummy"
+})
+
+db.artists.updateOne(
+  { id: 1 }, // Specify the filter to find the document with the matching ID
+  { $set: { genre: "Rock" } } // Specify the update operation to set the genre field
+)
+
+
+
+
+
+
+ 
+
+
+
+db.createCollection("albums", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["albumId", "artistId", "name", "songs"],
+      properties: {
+        albumId: {
+          bsonType: "int",
+          description: "must be an integer and is required"
+        },
+        artistId: {
+          bsonType: ["array"],
+          items: {
+            bsonType: "int"
+          },
+          description: "must be an integer representing the artist's ID and is required"
+        },
+        name: {
+          bsonType: "string",
+          description: "must be a string and is required"
+        },
+        genre: {
+          bsonType: ["string", "int", "double", "array", "object", "null"],
+          description: "must be an integer or null"
+        },
+        songs: {
+          bsonType: ["array"],
+          items: {
+            bsonType: "int"
+          },
+          description: "must be an array of song IDs and is required"
+        },
+        overallAlbumSentiment: {
+          bsonType: ["string", "int", "double", "array", "object", "null"],
+          description: "can be any type or null"
+        },
+        varianceOfSentimentsOfSongs: {
+          bsonType: ["double", "null"],
+          description: "must be a double or null"
+        },
+        toneMood: {
+          bsonType: ["string", "int", "double", "array", "object", "null"],
+          description: "can be any type or null"
+        },
+        emotionIntensity: {
+          bsonType: ["string", "int", "double", "array", "object", "null"],
+          description: "can be any type or null"
+        }
+      }
+    }
+  }
+});
+
+// Creating a unique index for the `albumId` field
+db.albums.createIndex({ albumId: 1 }, { unique: true });
+
+
+
+
+
+
+db.createCollection("songs", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["songId", "albumId", "artistId"],
+      properties: {
+        songId: {
+          bsonType: "int",
+          description: "must be an integer and is required"
+        },
+        albumId: {
+          bsonType: "int",
+          description: "must be an integer representing the album ID and is required"
+        },
+        artistId: {
+          bsonType: ["array"],
+          items: {
+            bsonType: "int"
+          },
+          description: "must be an array of integers representing artist IDs and is required"
+        },
+        lyrics: {
+          bsonType: "string",
+          description: "must be a string "
+        },
+        numberOfUniqueWords: {
+          bsonType: "int",
+          description: "must be an integer "
+        },
+        genre: {
+          bsonType: ["int", "string", "double", "array", "object", "bool", "null"],
+          description: "can be any type or null"
+        },
+        moodTone: {
+          bsonType: ["int", "string", "double", "array", "object", "bool", "null"],
+          description: "can be any type or null"
+        },
+        emotionIntensity: {
+          bsonType: ["int", "string", "double", "array", "object", "bool", "null"],
+          description: "can be any type or null"
+        }
+      }
+    }
+  }
+});
+
+// Creating a unique index for the `songId` field
+db.songs.createIndex({ songId: 1 }, { unique: true });

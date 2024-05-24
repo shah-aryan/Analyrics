@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'daisyui';
+
+body {
+  font-family: 'Manrope', sans-serif;
+}
+
+

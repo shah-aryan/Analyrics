@@ -1,0 +1,55 @@
+only two tabs rn
+
+main window one - artist overview
+
+for each artist
+vocabulary size
+reading level
+words per song
+average song length
+total discography size
+sentiment analysis overall
+sentiment analysis by album
+sentiments over time
+variance in sentiment
+most commonly used words
+words they use that other people don't usually use
+
+genre analysis
+collaboration network
+lyric themes by album
+average word length
+
+mood analysis
+emotion intnesity?
+
+
+
+chatgpt breakdown of categories
+
+Lexical Analysis:
+  Vocabulary size
+  Most commonly used words
+  Words they use that other people don't usually use
+
+Sentiment Analysis:
+  Sentiment analysis overall
+  Sentiment analysis by album
+  Sentiments over time
+  Variance in sentiment
+
+Text Complexity:
+  Reading level
+
+Song Composition:
+  Words per song
+  Average song length
+  Total discography size
+
+Music Analysis:
+  Genre analysis
+  Mood analysis
+  Emotion intensity
+
+Collaboration and Social Network:
+  Collaboration network

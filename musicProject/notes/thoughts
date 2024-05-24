@@ -1,0 +1,11 @@
+thoughts
+
+you cant use the lyricsgenius lubrary to get albums
+i need albums and songs proper database
+i can use bs4 to get all song titles in the artists albums
+then use lyrics genius to write all of the songs
+
+by the end of the day
+need to be able to give it the name or id of an artist
+then need to be able to use bs4 to get song titles
+then need to be able to get all lyrics from lyricsgenius
