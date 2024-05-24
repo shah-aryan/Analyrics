@@ -144,7 +144,7 @@ const StackedBarChart = ({accentColor = '#A290FC' }) => {
       })
       .on("mouseout", function(event, d) {
         d3.select(this)
-          .attr("fill", "#050505");
+          .attr("fill", "#101010");
         tooltip.transition().duration(500).style("opacity", 0);
       });
 

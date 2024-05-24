@@ -42,11 +42,11 @@ const Layout = () => {
         <div className="bg-base-200 rounded-lg shadow-lg outline outline-1 outline-base-300" style={{ height: '400px', width: '500px' }}>
           <div className="flex justify-center items-center text-center text-l text-info pt-4">
             <span className="text-accent"><FaPeopleGroup /></span>
-            <span className="ml-2">Albums Chart</span>
+            <span className="ml-2">Sentiments Chart</span>
           </div>
           <div className="text-center text-xl">
             <span className="">{artist}</span>
-            <span className="">'s Top Albums</span>
+            <span className="">'s Album Sentiments over Time</span>
           </div>
           <StackedAreaChart/>
         </div>
