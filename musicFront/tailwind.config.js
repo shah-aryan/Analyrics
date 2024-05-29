@@ -45,6 +45,8 @@ export default {
           'neutral-content': '#282828', //card3
           'base-content': '#E6E6E6', //text1
           'info': '#999999', //text2
+          'success': '#ADADAD', //listcard icon
+          'warning': '#979797', //listcard text
         },
       },
 

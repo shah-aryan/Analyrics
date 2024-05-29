@@ -12,7 +12,7 @@ const formatNumber = (num) => {
 
 const SmallCard = ({ number, label, icon, showPlus = true }) => {
   return (
-    <div className="relative bg-base-200 p-4 flex flex-col items-center rounded-xl outline outline-1 outline-base-300 w-64 hover:bg-opacity-80">
+    <div className="relative bg-base-200 p-4 flex flex-col items-center rounded-3xl outline outline-1 outline-base-300 w-64 hover:bg-opacity-80">
       <div className="flex items-center text-5xl font-bold">
         <span>{formatNumber(number)}</span>
         {showPlus && <span className="text-accent text-4xl font-normal leading-none">+</span>}

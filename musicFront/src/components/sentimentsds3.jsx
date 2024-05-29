@@ -1,4 +1,7 @@
-var albums = [
+import React, { useRef, useEffect } from 'react';
+import * as d3 from 'd3';
+
+const albums = [
   {
     date: new Date('2020-01-01'),
     sentiments: {
@@ -76,10 +79,7 @@ var albums = [
   }
 ];
 
-import React, { useRef, useEffect } from 'react';
-import * as d3 from 'd3';
-
-const StackedBarChart = ({accentColor = '#A290FC' }) => {
+const LineChart = ({ accentColor = '#A290FC', defaultColor = '#999999' }) => {
   const chartRef = useRef();
 
   useEffect(() => {
@@ -92,23 +92,20 @@ const StackedBarChart = ({accentColor = '#A290FC' }) => {
 
     const keys = Object.keys(albums[0].sentiments);
 
-    const series = d3.stack()
-      .offset(d3.stackOffsetExpand)
-      .keys(keys)
-      .value(([, values], key) => values[key])
-      (albums.map(d => [d.date, d.sentiments]));
+    const maxSentiment = d3.max(albums, album => d3.max(keys, key => album.sentiments[key]));
 
-    const x = d3.scaleBand()
-      .domain(albums.map(d => d.date))
-      .range([marginLeft, width - marginRight])
-      .padding(0.1);
+    const x = d3.scaleTime()
+      .domain(d3.extent(albums, d => d.date))
+      .range([marginLeft, width - marginRight]);
 
     const y = d3.scaleLinear()
+      .domain([0, maxSentiment])
       .rangeRound([height - marginBottom, marginTop]);
 
-    const color = d3.scaleOrdinal()
-      .domain(keys)
-      .range(d3.schemeGreys[9]);
+    const line = d3.line()
+      .curve(d3.curveCatmullRom)
+      .x(d => x(d.date))
+      .y(d => y(d.value));
 
     const svg = d3.select(chartRef.current)
       .attr("width", width)
@@ -116,39 +113,21 @@ const StackedBarChart = ({accentColor = '#A290FC' }) => {
       .attr("viewBox", [0, 0, width, height])
       .attr("style", "max-width: 100%; height: auto;");
 
-    const bars = svg.append("g")
-      .selectAll("g")
-      .data(series)
-      .join("g")
-      .attr("fill", "#101010")
-      .attr("stroke", accentColor)
-      .attr("stroke-width", 1)
-      .selectAll("rect")
-      .data(d => d)
-      .join("rect")
-      .attr("x", d => x(d.data[0]))
-      .attr("y", d => y(d[1]))
-      .attr("height", d => y(d[0]) - y(d[1]))
-      .attr("width", x.bandwidth())
-      .on("mouseover", function(event, d) {
-        d3.select(this)
-          .attr("fill", accentColor);
-        tooltip.transition().duration(200).style("opacity", 0.9);
-        tooltip.html(d.data[1])
-          .style("left", (event.pageX + 5) + "px")
-          .style("top", (event.pageY - 28) + "px");
-      })
-      .on("mousemove", function(event, d) {
-        tooltip.style("left", (event.pageX + 5) + "px")
-          .style("top", (event.pageY - 28) + "px");
-      })
-      .on("mouseout", function(event, d) {
-        d3.select(this)
-          .attr("fill", "#101010");
-        tooltip.transition().duration(500).style("opacity", 0);
-      });
+    const linesGroup = svg.append("g");
 
-    // Create tooltip element
+    keys.forEach(key => {
+      const lineData = albums.map(d => ({ date: d.date, value: d.sentiments[key] }));
+      
+      const path = linesGroup.append("path")
+        .datum(lineData)
+        .attr("fill", "none")
+        .attr("stroke", defaultColor)
+        .attr("stroke-width", 3)
+        .attr("d", line)
+        .attr("class", `line-${key}`);
+    });
+
+    // Tooltip element
     const tooltip = d3.select("body").append("div")
       .attr("class", "tooltip")
       .style("position", "absolute")
@@ -159,12 +138,47 @@ const StackedBarChart = ({accentColor = '#A290FC' }) => {
       .style("pointer-events", "none")
       .style("opacity", 0);
 
-    // Remove axes
-    svg.selectAll(".axis").remove();
+    svg.on("mousemove", function(event) {
+      const [xm, ym] = d3.pointer(event);
+      let closestLine;
+      let minDistance = Infinity;
 
-  }, [albums, accentColor]);
+      keys.forEach(key => {
+        const lineData = albums.map(d => ({ date: d.date, value: d.sentiments[key] }));
+        const distances = lineData.map(d => Math.hypot(x(d.date) - xm, y(d.value) - ym));
+        const minLineDistance = Math.min(...distances);
+
+        if (minLineDistance < minDistance) {
+          minDistance = minLineDistance;
+          closestLine = key;
+        }
+      });
+
+      linesGroup.selectAll("path")
+        .attr("stroke", defaultColor)
+        .attr("stroke-width", 3);
+
+      linesGroup.selectAll(`.line-${closestLine}`)
+        .attr("stroke", accentColor)
+        .attr("stroke-width", 5);
+
+      tooltip.transition().duration(200).style("opacity", 0.9);
+      tooltip.html(`${closestLine}`)
+        .style("left", (event.pageX + 5) + "px")
+        .style("top", (event.pageY - 28) + "px");
+    });
+
+    svg.on("mouseleave", function() {
+      linesGroup.selectAll("path")
+        .attr("stroke", defaultColor)
+        .attr("stroke-width", 3);
+
+      tooltip.transition().duration(500).style("opacity", 0);
+    });
+
+  }, [accentColor, defaultColor]);
 
   return <svg ref={chartRef}></svg>;
 };
 
-export default StackedBarChart;
+export default LineChart;
