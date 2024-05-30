@@ -67,7 +67,9 @@ const D3Chart = () => {
       .attr("r", d => 5 + (d.weight)*4+0.1) // Node size proportional to weight
       .attr("fill", d => d.id === 'Central' ? '#ffffff' : accentColor)
       .attr("stroke", d => d.id === 'Central' ? '#ffffff' : accentColor)
-      .attr("stroke-width", 1.5);
+      .attr("stroke-width", 1.5)
+      .style("cursor", "pointer"); // Set cursor to pointer on hover
+  
 
     node.append("title")
       .text(d => d.id);
@@ -77,7 +79,9 @@ const D3Chart = () => {
       .force("charge", d3.forceManyBody().strength(-height / 5)) // Charge strength relative to parent height
       .force("center", d3.forceCenter(width / 2, height / 2 + offsetY)) // Center force with offset
       .force("x", d3.forceX(width / 2).strength(0.05))
-      .force("y", d3.forceY(height / 2 + offsetY).strength(0.05));
+      .force("y", d3.forceY(height / 2 + offsetY).strength(0.05))
+      .alpha(1.4)
+      .alphaDecay(0.01);
 
 
     simulation.on("tick", () => {

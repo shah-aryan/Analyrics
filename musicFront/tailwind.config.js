@@ -1,4 +1,3 @@
-/** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./index.html",
@@ -20,11 +19,44 @@ export default {
         '4xl': '2.25rem',
         '5xl': '3rem',
         '6xl': '4rem',
+        '10xl' : '6rem'
       },
       fontWeight: {
         normal: 400,
         medium: 500,
         bold: 700,
+      },
+      animation: {
+        typewriter: 'typewriter var(--time) steps(var(--typewriter-steps)) forwards',
+      },
+      keyframes: {
+        typewriter: {
+          to: {
+            left: "100%"
+          }
+        },
+        caret: {
+          to: {
+            left: "100%"
+          }
+        },
+      },
+      blink: {
+        '0%': {
+          opacity: '0',
+        },
+        '0.1%': {
+          opacity: '0',
+        },
+        '50%': {
+          opacity: '0',
+        },
+        '50.1%': {
+          opacity: '0',
+        },
+        '100%': {
+          opacity: '0',
+        },
       },
     },
   },
@@ -49,7 +81,6 @@ export default {
           'warning': '#979797', //listcard text
         },
       },
-
     ],
   },
 }

@@ -1,62 +1,54 @@
-import * as d3 from 'd3'
-import React from 'react';
+import React, { useEffect } from 'react';
+import WordCloud from 'react-d3-cloud';
+import { select } from 'd3-selection';
+import { scaleLinear } from 'd3-scale';
 
-function WordCloud(text, {
-  size = group => group.length, // Given a grouping of words, returns the size factor for that word
-  word = d => d, // Given an item of the data array, returns the word
-  marginTop = 0, // top margin, in pixels
-  marginRight = 0, // right margin, in pixels
-  marginBottom = 0, // bottom margin, in pixels
-  marginLeft = 0, // left margin, in pixels
-  width = 640, // outer width, in pixels
-  height = 400, // outer height, in pixels
-  maxWords = 250, // maximum number of words to extract from the text
-  fontFamily = "sans-serif", // font family
-  fontScale = 15, // base font size
-  fill = null, // text color, can be a constant or a function of the word
-  padding = 0, // amount of padding between the words (in pixels)
-  rotate = 0, // a constant or function to rotate the words
-  invalidation // when this promise resolves, stop the simulation
-} = {}) {
-  const words = typeof text === "string" ? text.split(/\W+/g) : Array.from(text);
-  
-  const data = d3.rollups(words, size, w => w)
-    .sort(([, a], [, b]) => d3.descending(a, b))
-    .slice(0, maxWords)
-    .map(([key, size]) => ({text: word(key), size}));
-  
-  const svg = d3.create("svg")
-      .attr("viewBox", [0, 0, width, height])
-      .attr("width", width)
-      .attr("font-family", fontFamily)
-      .attr("text-anchor", "middle")
-      .attr("style", "max-width: 100%; height: auto; height: intrinsic;");
+const WordCloudComponent = ({ words = [], weights = [], accentColor = "#A290FC" }) => {
+  const maxWeight = Math.max(...weights);
+  const minWeight = Math.min(...weights);
+  const sizeScale = scaleLinear()
+                    .domain([minWeight, maxWeight])
+                    .range([10, 60]);
 
-  const g = svg.append("g").attr("transform", `translate(${marginLeft},${marginTop})`);
+  const data = words.map((word, index) => ({
+    text: word,
+    value: sizeScale(weights[index]),
+    count: weights[index],
+  }));
 
-  const cloud = d3Cloud()
-      .size([width - marginLeft - marginRight, height - marginTop - marginBottom])
-      .words(data)
-      .padding(padding)
-      .rotate(rotate)
-      .font(fontFamily)
-      .fontSize(d => Math.sqrt(d.size) * fontScale)
-      .on("word", ({size, x, y, rotate, text}) => {
-        g.append("text")
-            .datum(text)
-            .attr("font-size", size)
-            .attr("fill", fill)
-            .attr("transform", `translate(${x},${y}) rotate(${rotate})`)
-            .text(text);
-      });
+  const fontSizeMapper = word => word.value;
+  const rotate = () => 0;
 
-  cloud.start();
-  invalidation && invalidation.then(() => cloud.stop());
-  return svg.node();
-}
+  const width = 350;
+  const height = 200;
 
-WordCloud(words, {
-  width,
-  height: 500,
-  invalidation // a promise to stop the simulation when the cell is re-run
-})
+  return (
+    <div className="word-cloud relative">
+      <WordCloud
+        data={data}
+        width={width}
+        height={height}
+        font="Manrope"
+        fontSize={fontSizeMapper}
+        fontStyle="bold"
+        fontWeight="normal"
+        rotate={rotate}
+        padding={3}
+        fill={(word, index) => ("#999999")}
+        onWordClick={(event, d) => {}}
+        onWordMouseOver={(event, d) => {
+          
+          select(event.target)
+            .style('cursor', 'pointer')
+            .style('fill', accentColor);
+          
+        }}
+        onWordMouseOut={(event, d) => {
+          select(event.target).style('fill', '#999999');
+        }}
+      />
+    </div>
+  );
+};
+
+export default WordCloudComponent;
