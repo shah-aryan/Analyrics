@@ -72,7 +72,6 @@ const Layout = () => {
           <SmallCard number={averageSongLengthSeconds} label="Seconds/Song" icon={<IoIosPerson />} showPlus={false} />
           <SmallCard number={averageSongLengthWords} label="Words/Song" icon={<IoIosPerson />} showPlus={false} />
         </div>
-        <CardList title="Top 5 something - decide what" />
         <GraphHolder title="Collaborations Chart" subtitle="Interactive Collaborations Visualizer" icon={<FaPeopleGroup />} chart={<D3Chart  />} />
         <GraphHolder title="Sentiments Chart" subtitle="Sentiments Chart" icon={<GoHeartFill />} chart={<LineChart />} />
         <div className="grid grid-cols-1 gap-8">
@@ -81,6 +80,9 @@ const Layout = () => {
         </div>
         <GraphHolder title="Word Cloud" subtitle="Word Cloud" icon={<FaCloud />}  />
         <GraphHolder title="Sentiment Trends" chart={<h1>Chart</h1>} />
+      </div>
+      <div className='flex h-96'>
+          <CardList title="Top 5 something - decide what" />
       </div>
     </>
   );

@@ -1,0 +1,29 @@
+okay so now things are changing to haing multiple pages for rankings and other things like that
+
+what are we going to put on each page
+
+need to refactor databases to reflect this
+
+
+things to put on artist that werent there before
+albums list
+top 5 songs?
+
+
+things to put on albums
+songs list
+sentiments through album
+other shit
+
+
+things to put on songs
+whatever songs stats
+
+
+
+things to put on rankings page
+how to display rankings page
+
+
+add a theme changer
+maybe not even light mode? maybe a synthwave or other theme?
