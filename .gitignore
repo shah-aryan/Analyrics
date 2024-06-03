@@ -1,0 +1,10 @@
+musicDataAquisition/.venv
+musicBack/node_modules
+musicFront/node_modules
+.DS_*
+*.DS_*
+*.*.DS_*
+*.log
+logs
+**/*.backup.*
+**/*.back.*
