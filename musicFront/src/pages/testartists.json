@@ -1,0 +1,212 @@
+[
+  {
+    "i": 11,
+    "name": "Taylor Swift",
+    "albums": [101, 102],
+    "collaborationNetwork": [201, 202],
+    "vocabularySize": 300,
+    "mostUsedWords": [
+      { "word": "love", "count": 50 },
+      { "word": "life", "count": 30 }
+    ],
+    "readingLevel": 7.5,
+    "numberOfWords": 5000,
+    "numberOfSongs": 20,
+    "numberOfCharacters": 25000,
+    "averageSentenceLength": 12.5,
+    "averageWordLength": 4.2,
+    "averageSongLengthWords": 250,
+    "averageSongLengthSeconds": 180,
+    "varianceOfEmotionsOfAlbums": [0.5, 0.6, 0.7, 0.8, 0.5, 0.6, 0.7, 0.8, 0.5, 0.6],
+    "emotion": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  },
+  {
+    "i": 12,
+    "name": "Ed Sheeran",
+    "albums": [103, 104],
+    "collaborationNetwork": [203, 204],
+    "vocabularySize": 290,
+    "mostUsedWords": [
+      { "word": "heart", "count": 45 },
+      { "word": "time", "count": 28 }
+    ],
+    "readingLevel": 7.0,
+    "numberOfWords": 4800,
+    "numberOfSongs": 18,
+    "numberOfCharacters": 24000,
+    "averageSentenceLength": 12.0,
+    "averageWordLength": 4.0,
+    "averageSongLengthWords": 245,
+    "averageSongLengthSeconds": 175,
+    "varianceOfEmotionsOfAlbums": [0.6, 0.7, 0.8, 0.9, 0.6, 0.7, 0.8, 0.9, 0.6, 0.7],
+    "emotion": [2, 3, 4, 5, 6, 7, 8, 9, 10, 1]
+  },
+  {
+    "i": 3,
+    "name": "Beyoncé",
+    "albums": [105, 106],
+    "collaborationNetwork": [205, 206],
+    "vocabularySize": 320,
+    "mostUsedWords": [
+      { "word": "power", "count": 55 },
+      { "word": "soul", "count": 35 }
+    ],
+    "readingLevel": 8.0,
+    "numberOfWords": 5200,
+    "numberOfSongs": 22,
+    "numberOfCharacters": 26000,
+    "averageSentenceLength": 13.0,
+    "averageWordLength": 4.5,
+    "averageSongLengthWords": 260,
+    "averageSongLengthSeconds": 185,
+    "varianceOfEmotionsOfAlbums": [0.7, 0.8, 0.9, 1.0, 0.7, 0.8, 0.9, 1.0, 0.7, 0.8],
+    "emotion": [3, 4, 5, 6, 7, 8, 9, 10, 1, 2]
+  },
+  {
+    "i": 4,
+    "name": "Adele",
+    "albums": [107, 108],
+    "collaborationNetwork": [207, 208],
+    "vocabularySize": 310,
+    "mostUsedWords": [
+      { "word": "tears", "count": 48 },
+      { "word": "memories", "count": 32 }
+    ],
+    "readingLevel": 7.8,
+    "numberOfWords": 5000,
+    "numberOfSongs": 20,
+    "numberOfCharacters": 25000,
+    "averageSentenceLength": 12.8,
+    "averageWordLength": 4.3,
+    "averageSongLengthWords": 255,
+    "averageSongLengthSeconds": 182,
+    "varianceOfEmotionsOfAlbums": [0.6, 0.7, 0.8, 0.9, 0.6, 0.7, 0.8, 0.9, 0.6, 0.7],
+    "emotion": [4, 5, 6, 7, 8, 9, 10, 1, 2, 3]
+  },
+  {
+    "i": 5,
+    "name": "Drake",
+    "albums": [109, 110],
+    "collaborationNetwork": [209, 210],
+    "vocabularySize": 330,
+    "mostUsedWords": [
+      { "word": "money", "count": 60 },
+      { "word": "success", "count": 40 }
+    ],
+    "readingLevel": 8.2,
+    "numberOfWords": 5400,
+    "numberOfSongs": 24,
+    "numberOfCharacters": 27000,
+    "averageSentenceLength": 13.5,
+    "averageWordLength": 4.6,
+    "averageSongLengthWords": 270,
+    "averageSongLengthSeconds": 190,
+    "varianceOfEmotionsOfAlbums": [0.8, 0.9, 1.0, 1.1, 0.8, 0.9, 1.0, 1.1, 0.8, 0.9],
+    "emotion": [5, 6, 7, 8, 9, 10, 1, 2, 3, 4]
+  },
+  {
+    "i": 6,
+    "name": "Kanye West",
+    "albums": [111, 112],
+    "collaborationNetwork": [211, 212],
+    "vocabularySize": 340,
+    "mostUsedWords": [
+      { "word": "dreams", "count": 62 },
+      { "word": "faith", "count": 42 }
+    ],
+    "readingLevel": 8.5,
+    "numberOfWords": 5500,
+    "numberOfSongs": 25,
+    "numberOfCharacters": 27500,
+    "averageSentenceLength": 13.7,
+    "averageWordLength": 4.7,
+    "averageSongLengthWords": 275,
+    "averageSongLengthSeconds": 192,
+    "varianceOfEmotionsOfAlbums": [0.9, 1.0, 1.1, 1.2, 0.9, 1.0, 1.1, 1.2, 0.9, 1.0],
+    "emotion": [6, 7, 8, 9, 10, 1, 2, 3, 4, 5]
+  },
+  {
+    "i": 7,
+    "name": "Rihanna",
+    "albums": [113, 114],
+    "collaborationNetwork": [213, 214],
+    "vocabularySize": 315,
+    "mostUsedWords": [
+      { "word": "shine", "count": 50 },
+      { "word": "dance", "count": 33 }
+    ],
+    "readingLevel": 7.9,
+    "numberOfWords": 5100,
+    "numberOfSongs": 21,
+    "numberOfCharacters": 25500,
+    "averageSentenceLength": 12.9,
+    "averageWordLength": 4.4,
+    "averageSongLengthWords": 255,
+    "averageSongLengthSeconds": 185,
+    "varianceOfEmotionsOfAlbums": [0.7, 0.8, 0.9, 1.0, 0.7, 0.8, 0.9, 1.0, 0.7, 0.8],
+    "emotion": [7, 8, 9, 10, 1, 2, 3, 4, 5, 6]
+  },
+  {
+    "i": 8,
+    "name": "Justin Bieber",
+    "albums": [115, 116],
+    "collaborationNetwork": [215, 216],
+    "vocabularySize": 300,
+    "mostUsedWords": [
+      { "word": "baby", "count": 45 },
+      { "word": "sorry", "count": 30 }
+    ],
+    "readingLevel": 7.5,
+    "numberOfWords": 5000,
+    "numberOfSongs": 20,
+    "numberOfCharacters": 25000,
+    "averageSentenceLength": 12.5,
+    "averageWordLength": 4.2,
+    "averageSongLengthWords": 250,
+    "averageSongLengthSeconds": 180,
+    "varianceOfEmotionsOfAlbums": [0.5, 0.6, 0.7, 0.8, 0.5, 0.6, 0.7, 0.8, 0.5, 0.6],
+    "emotion": [8, 9, 10, 1, 2, 3, 4, 5, 6, 7]
+  },
+  {
+    "i": 9,
+    "name": "Ariana Grande",
+    "albums": [117, 118],
+    "collaborationNetwork": [217, 218],
+    "vocabularySize": 310,
+    "mostUsedWords": [
+      { "word": "thank", "count": 50 },
+      { "word": "next", "count": 35 }
+    ],
+    "readingLevel": 7.8,
+    "numberOfWords": 5000,
+    "numberOfSongs": 20,
+    "numberOfCharacters": 25000,
+    "averageSentenceLength": 12.8,
+    "averageWordLength": 4.3,
+    "averageSongLengthWords": 255,
+    "averageSongLengthSeconds": 182,
+    "varianceOfEmotionsOfAlbums": [0.6, 0.7, 0.8, 0.9, 0.6, 0.7, 0.8, 0.9, 0.6, 0.7],
+    "emotion": [9, 10, 1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "i": 10,
+    "name": "Billie Eilish",
+    "albums": [119, 120],
+    "collaborationNetwork": [219, 220],
+    "vocabularySize": 320,
+    "mostUsedWords": [
+      { "word": "dark", "count": 55 },
+      { "word": "whisper", "count": 38 }
+    ],
+    "readingLevel": 8.1,
+    "numberOfWords": 5200,
+    "numberOfSongs": 22,
+    "numberOfCharacters": 26000,
+    "averageSentenceLength": 13.0,
+    "averageWordLength": 4.5,
+    "averageSongLengthWords": 260,
+    "averageSongLengthSeconds": 185,
+    "varianceOfEmotionsOfAlbums": [0.7, 0.8, 0.9, 1.0, 0.7, 0.8, 0.9, 1.0, 0.7, 0.8],
+    "emotion": [10, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  }
+]
