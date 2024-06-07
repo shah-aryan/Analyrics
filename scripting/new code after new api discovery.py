@@ -1,10 +1,14 @@
 import lyricsgenius
-import api_key
-from exampleDocumentsInsert import *
-from utils import *
+from dotenv import load_dotenv
+from scripting.utils_documents import *
+from scripting.utils_lyrics import *
+import os
+
+load_dotenv()
+client_access_token = os.getenv("CLIENT_ACCESS_TOKEN")
 
 # Initialize Genius API client
-genius = lyricsgenius.Genius(api_key.client_access_token, timeout=5, sleep_time=0.1, retries=3)
+genius = lyricsgenius.Genius(client_access_token, timeout=5, sleep_time=0.1, retries=3)
 
 from pymongo import MongoClient
 

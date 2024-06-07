@@ -1,4 +1,0 @@
-# client_access_token = 'W4f7M9_2Hf0eFrEWiP6RrtsBH7BqJzW5lQP02w7wmeIf6bqNmhPgNdJ2jo7yrHsvDhhGt8fluaLq5O9mCxqVtA'
-client_access_token = 'wwLXhDpFmnMgzCfzNxZDUfXeFodLy7fl866qMjiT0ZidZrsi9IgxsiFaE4mXZ-VA'
-client_id = "0DFiPa9j5m5sox4jYXjt4__LMTAI0ACYxK6aRaoMI_earvlwWIyRLkYQEFmg9xyS"
-client_secret = "W4f7M9_2Hf0eFrEWiP6RrtsBH7BqJzW5lQP02w7wmeIf6bqNmhPgNdJ2jo7yrHsvDhhGt8fluaLq5O9mCxqVtA"

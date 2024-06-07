@@ -1,6 +1,6 @@
-musicDataAquisition/.venv
-musicBack/node_modules
-musicFront/node_modules
+*/.venv
+*/*/.venv
+*/node_modules
 .DS_*
 *.DS_*
 *.*.DS_*
@@ -8,3 +8,5 @@ musicFront/node_modules
 logs
 **/*.backup.*
 **/*.back.*
+scripting/api_key.py
+.env

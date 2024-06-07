@@ -1,0 +1,780 @@
+{
+  "albums": [
+    {
+      "_type": "album",
+      "api_path": "/albums/350958",
+      "cover_art_thumbnail_url": "https://images.genius.com/938568f8961cba0e4fe34fd28d709c63.300x300x1.png",
+      "cover_art_url": "https://images.genius.com/938568f8961cba0e4fe34fd28d709c63.1000x1000x1.png",
+      "full_title": "4:44 by JAY-Z",
+      "id": 350958,
+      "name": "4:44",
+      "name_with_artist": "4:44 (artist: JAY-Z)",
+      "release_date_components": {
+        "year": 2017,
+        "month": 6,
+        "day": 30
+      },
+      "release_date_for_display": "June 30, 2017",
+      "url": "https://genius.com/albums/Jay-z/4-44",
+      "artist": {
+        "_type": "artist",
+        "api_path": "/artists/2",
+        "header_image_url": "https://images.genius.com/57f67753a0fe8ce5ff4a2ab903fbe850.500x301x1.png",
+        "id": 2,
+        "image_url": "https://images.genius.com/dab4680bbb0569024ef3df3d1e87c277.570x570x1.jpg",
+        "index_character": "j",
+        "is_meme_verified": true,
+        "is_verified": true,
+        "name": "JAY-Z",
+        "slug": "Jay-z",
+        "url": "https://genius.com/artists/Jay-z",
+        "iq": 225
+      }
+    },
+    {
+      "_type": "album",
+      "api_path": "/albums/36559",
+      "cover_art_thumbnail_url": "https://images.genius.com/2da322648704159878b73c5cfc9c7dc5.300x300x1.png",
+      "cover_art_url": "https://images.genius.com/2da322648704159878b73c5cfc9c7dc5.1000x1000x1.png",
+      "full_title": "Magna Carta... Holy Grail by JAY-Z",
+      "id": 36559,
+      "name": "Magna Carta... Holy Grail",
+      "name_with_artist": "Magna Carta... Holy Grail (artist: JAY-Z)",
+      "release_date_components": {
+        "year": 2013,
+        "month": 7,
+        "day": 4
+      },
+      "release_date_for_display": "July 4, 2013",
+      "url": "https://genius.com/albums/Jay-z/Magna-carta-holy-grail",
+      "artist": {
+        "_type": "artist",
+        "api_path": "/artists/2",
+        "header_image_url": "https://images.genius.com/57f67753a0fe8ce5ff4a2ab903fbe850.500x301x1.png",
+        "id": 2,
+        "image_url": "https://images.genius.com/dab4680bbb0569024ef3df3d1e87c277.570x570x1.jpg",
+        "index_character": "j",
+        "is_meme_verified": true,
+        "is_verified": true,
+        "name": "JAY-Z",
+        "slug": "Jay-z",
+        "url": "https://genius.com/artists/Jay-z",
+        "iq": 225
+      }
+    },
+    {
+      "_type": "album",
+      "api_path": "/albums/493910",
+      "cover_art_thumbnail_url": "https://images.genius.com/3e492baffbf45a2be5985bf03357c56b.300x300x1.jpg",
+      "cover_art_url": "https://images.genius.com/3e492baffbf45a2be5985bf03357c56b.1000x1000x1.jpg",
+      "full_title": "Live In Brooklyn by JAY-Z",
+      "id": 493910,
+      "name": "Live In Brooklyn",
+      "name_with_artist": "Live In Brooklyn (artist: JAY-Z)",
+      "release_date_components": {
+        "year": 2012,
+        "month": 10,
+        "day": 11
+      },
+      "release_date_for_display": "October 11, 2012",
+      "url": "https://genius.com/albums/Jay-z/Live-in-brooklyn",
+      "artist": {
+        "_type": "artist",
+        "api_path": "/artists/2",
+        "header_image_url": "https://images.genius.com/57f67753a0fe8ce5ff4a2ab903fbe850.500x301x1.png",
+        "id": 2,
+        "image_url": "https://images.genius.com/dab4680bbb0569024ef3df3d1e87c277.570x570x1.jpg",
+        "index_character": "j",
+        "is_meme_verified": true,
+        "is_verified": true,
+        "name": "JAY-Z",
+        "slug": "Jay-z",
+        "url": "https://genius.com/artists/Jay-z",
+        "iq": 225
+      }
+    },
+    {
+      "_type": "album",
+      "api_path": "/albums/749342",
+      "cover_art_thumbnail_url": "https://images.genius.com/e1fdf4b17b590c9a98778b89e11cbb1d.300x300x1.jpg",
+      "cover_art_url": "https://images.genius.com/e1fdf4b17b590c9a98778b89e11cbb1d.500x500x1.jpg",
+      "full_title": "Headliner & Legends by JAY-Z",
+      "id": 749342,
+      "name": "Headliner & Legends",
+      "name_with_artist": "Headliner & Legends (artist: JAY-Z)",
+      "release_date_components": {
+        "year": 2011,
+        "month": 3,
+        "day": 23
+      },
+      "release_date_for_display": "March 23, 2011",
+      "url": "https://genius.com/albums/Jay-z/Headliner-legends",
+      "artist": {
+        "_type": "artist",
+        "api_path": "/artists/2",
+        "header_image_url": "https://images.genius.com/57f67753a0fe8ce5ff4a2ab903fbe850.500x301x1.png",
+        "id": 2,
+        "image_url": "https://images.genius.com/dab4680bbb0569024ef3df3d1e87c277.570x570x1.jpg",
+        "index_character": "j",
+        "is_meme_verified": true,
+        "is_verified": true,
+        "name": "JAY-Z",
+        "slug": "Jay-z",
+        "url": "https://genius.com/artists/Jay-z",
+        "iq": 225
+      }
+    },
+    {
+      "_type": "album",
+      "api_path": "/albums/492031",
+      "cover_art_thumbnail_url": "https://images.genius.com/11e8f2e0d2c5e3d46b6c1a558d7e1f59.300x300x1.jpg",
+      "cover_art_url": "https://images.genius.com/11e8f2e0d2c5e3d46b6c1a558d7e1f59.1000x1000x1.jpg",
+      "full_title": "The Hits Collection, Volume\u00a0One by JAY-Z",
+      "id": 492031,
+      "name": "The Hits Collection, Volume\u00a0One",
+      "name_with_artist": "The Hits Collection, Volume\u00a0One (artist: JAY-Z)",
+      "release_date_components": {
+        "year": 2010,
+        "month": 11,
+        "day": 22
+      },
+      "release_date_for_display": "November 22, 2010",
+      "url": "https://genius.com/albums/Jay-z/The-hits-collection-volume-one",
+      "artist": {
+        "_type": "artist",
+        "api_path": "/artists/2",
+        "header_image_url": "https://images.genius.com/57f67753a0fe8ce5ff4a2ab903fbe850.500x301x1.png",
+        "id": 2,
+        "image_url": "https://images.genius.com/dab4680bbb0569024ef3df3d1e87c277.570x570x1.jpg",
+        "index_character": "j",
+        "is_meme_verified": true,
+        "is_verified": true,
+        "name": "JAY-Z",
+        "slug": "Jay-z",
+        "url": "https://genius.com/artists/Jay-z",
+        "iq": 225
+      }
+    },
+    {
+      "_type": "album",
+      "api_path": "/albums/117366",
+      "cover_art_thumbnail_url": "https://images.genius.com/cd82af9edae1d0812bf89a57ee3a25ba.300x370x1.jpg",
+      "cover_art_url": "https://images.genius.com/cd82af9edae1d0812bf89a57ee3a25ba.722x890x1.jpg",
+      "full_title": "Decoded (Excerpts) by JAY-Z",
+      "id": 117366,
+      "name": "Decoded (Excerpts)",
+      "name_with_artist": "Decoded (Excerpts) (artist: JAY-Z)",
+      "release_date_components": {
+        "year": 2010,
+        "month": null,
+        "day": null
+      },
+      "release_date_for_display": "January 2, 2010",
+      "url": "https://genius.com/albums/Jay-z/Decoded-excerpts",
+      "artist": {
+        "_type": "artist",
+        "api_path": "/artists/2",
+        "header_image_url": "https://images.genius.com/57f67753a0fe8ce5ff4a2ab903fbe850.500x301x1.png",
+        "id": 2,
+        "image_url": "https://images.genius.com/dab4680bbb0569024ef3df3d1e87c277.570x570x1.jpg",
+        "index_character": "j",
+        "is_meme_verified": true,
+        "is_verified": true,
+        "name": "JAY-Z",
+        "slug": "Jay-z",
+        "url": "https://genius.com/artists/Jay-z",
+        "iq": 225
+      }
+    },
+    {
+      "_type": "album",
+      "api_path": "/albums/4057",
+      "cover_art_thumbnail_url": "https://images.genius.com/05aca8558595048a8a011c51660dd3b2.300x300x1.png",
+      "cover_art_url": "https://images.genius.com/05aca8558595048a8a011c51660dd3b2.1000x1000x1.png",
+      "full_title": "The Blueprint 3 by JAY-Z",
+      "id": 4057,
+      "name": "The Blueprint 3",
+      "name_with_artist": "The Blueprint 3 (artist: JAY-Z)",
+      "release_date_components": {
+        "year": 2009,
+        "month": 9,
+        "day": 8
+      },
+      "release_date_for_display": "September 8, 2009",
+      "url": "https://genius.com/albums/Jay-z/The-blueprint-3",
+      "artist": {
+        "_type": "artist",
+        "api_path": "/artists/2",
+        "header_image_url": "https://images.genius.com/57f67753a0fe8ce5ff4a2ab903fbe850.500x301x1.png",
+        "id": 2,
+        "image_url": "https://images.genius.com/dab4680bbb0569024ef3df3d1e87c277.570x570x1.jpg",
+        "index_character": "j",
+        "is_meme_verified": true,
+        "is_verified": true,
+        "name": "JAY-Z",
+        "slug": "Jay-z",
+        "url": "https://genius.com/artists/Jay-z",
+        "iq": 225
+      }
+    },
+    {
+      "_type": "album",
+      "api_path": "/albums/767357",
+      "cover_art_thumbnail_url": "https://images.genius.com/f1446908f7121260d43be750e43ae41a.300x300x1.jpg",
+      "cover_art_url": "https://images.genius.com/f1446908f7121260d43be750e43ae41a.1000x1000x1.jpg",
+      "full_title": "American Gangster Acappella by JAY-Z",
+      "id": 767357,
+      "name": "American Gangster Acappella",
+      "name_with_artist": "American Gangster Acappella (artist: JAY-Z)",
+      "release_date_components": {
+        "year": 2007,
+        "month": 11,
+        "day": 6
+      },
+      "release_date_for_display": "November 6, 2007",
+      "url": "https://genius.com/albums/Jay-z/American-gangster-acappella",
+      "artist": {
+        "_type": "artist",
+        "api_path": "/artists/2",
+        "header_image_url": "https://images.genius.com/57f67753a0fe8ce5ff4a2ab903fbe850.500x301x1.png",
+        "id": 2,
+        "image_url": "https://images.genius.com/dab4680bbb0569024ef3df3d1e87c277.570x570x1.jpg",
+        "index_character": "j",
+        "is_meme_verified": true,
+        "is_verified": true,
+        "name": "JAY-Z",
+        "slug": "Jay-z",
+        "url": "https://genius.com/artists/Jay-z",
+        "iq": 225
+      }
+    },
+    {
+      "_type": "album",
+      "api_path": "/albums/4055",
+      "cover_art_thumbnail_url": "https://images.genius.com/778c1892b8a2f5aee554c4c797ca8915.300x300x1.jpg",
+      "cover_art_url": "https://images.genius.com/778c1892b8a2f5aee554c4c797ca8915.1000x1000x1.jpg",
+      "full_title": "American Gangster by JAY-Z",
+      "id": 4055,
+      "name": "American Gangster",
+      "name_with_artist": "American Gangster (artist: JAY-Z)",
+      "release_date_components": {
+        "year": 2007,
+        "month": 11,
+        "day": 6
+      },
+      "release_date_for_display": "November 6, 2007",
+      "url": "https://genius.com/albums/Jay-z/American-gangster",
+      "artist": {
+        "_type": "artist",
+        "api_path": "/artists/2",
+        "header_image_url": "https://images.genius.com/57f67753a0fe8ce5ff4a2ab903fbe850.500x301x1.png",
+        "id": 2,
+        "image_url": "https://images.genius.com/dab4680bbb0569024ef3df3d1e87c277.570x570x1.jpg",
+        "index_character": "j",
+        "is_meme_verified": true,
+        "is_verified": true,
+        "name": "JAY-Z",
+        "slug": "Jay-z",
+        "url": "https://genius.com/artists/Jay-z",
+        "iq": 225
+      }
+    },
+    {
+      "_type": "album",
+      "api_path": "/albums/4069",
+      "cover_art_thumbnail_url": "https://images.genius.com/4371d45b1c52d7dc87e4204ae0aa8373.300x300x1.jpg",
+      "cover_art_url": "https://images.genius.com/4371d45b1c52d7dc87e4204ae0aa8373.900x900x1.jpg",
+      "full_title": "Kingdom Come by JAY-Z",
+      "id": 4069,
+      "name": "Kingdom Come",
+      "name_with_artist": "Kingdom Come (artist: JAY-Z)",
+      "release_date_components": {
+        "year": 2006,
+        "month": 11,
+        "day": 21
+      },
+      "release_date_for_display": "November 21, 2006",
+      "url": "https://genius.com/albums/Jay-z/Kingdom-come",
+      "artist": {
+        "_type": "artist",
+        "api_path": "/artists/2",
+        "header_image_url": "https://images.genius.com/57f67753a0fe8ce5ff4a2ab903fbe850.500x301x1.png",
+        "id": 2,
+        "image_url": "https://images.genius.com/dab4680bbb0569024ef3df3d1e87c277.570x570x1.jpg",
+        "index_character": "j",
+        "is_meme_verified": true,
+        "is_verified": true,
+        "name": "JAY-Z",
+        "slug": "Jay-z",
+        "url": "https://genius.com/artists/Jay-z",
+        "iq": 225
+      }
+    },
+    {
+      "_type": "album",
+      "api_path": "/albums/24411",
+      "cover_art_thumbnail_url": "https://images.genius.com/60b897ee4bc02d94fa9e9d2e94f15ba4.300x300x1.jpg",
+      "cover_art_url": "https://images.genius.com/60b897ee4bc02d94fa9e9d2e94f15ba4.500x500x1.jpg",
+      "full_title": "S. Carter The Re-Mix by JAY-Z",
+      "id": 24411,
+      "name": "S. Carter The Re-Mix",
+      "name_with_artist": "S. Carter The Re-Mix (artist: JAY-Z)",
+      "release_date_components": {
+        "year": 2004,
+        "month": null,
+        "day": null
+      },
+      "release_date_for_display": "2004",
+      "url": "https://genius.com/albums/Jay-z/S-carter-the-re-mix",
+      "artist": {
+        "_type": "artist",
+        "api_path": "/artists/2",
+        "header_image_url": "https://images.genius.com/57f67753a0fe8ce5ff4a2ab903fbe850.500x301x1.png",
+        "id": 2,
+        "image_url": "https://images.genius.com/dab4680bbb0569024ef3df3d1e87c277.570x570x1.jpg",
+        "index_character": "j",
+        "is_meme_verified": true,
+        "is_verified": true,
+        "name": "JAY-Z",
+        "slug": "Jay-z",
+        "url": "https://genius.com/artists/Jay-z",
+        "iq": 225
+      }
+    },
+    {
+      "_type": "album",
+      "api_path": "/albums/4097",
+      "cover_art_thumbnail_url": "https://images.genius.com/58a07fb743226031d3ccf6dc472cccdf.300x300x1.jpg",
+      "cover_art_url": "https://images.genius.com/58a07fb743226031d3ccf6dc472cccdf.991x991x1.jpg",
+      "full_title": "The Black Album by JAY-Z",
+      "id": 4097,
+      "name": "The Black Album",
+      "name_with_artist": "The Black Album (artist: JAY-Z)",
+      "release_date_components": {
+        "year": 2003,
+        "month": 11,
+        "day": 14
+      },
+      "release_date_for_display": "November 14, 2003",
+      "url": "https://genius.com/albums/Jay-z/The-black-album",
+      "artist": {
+        "_type": "artist",
+        "api_path": "/artists/2",
+        "header_image_url": "https://images.genius.com/57f67753a0fe8ce5ff4a2ab903fbe850.500x301x1.png",
+        "id": 2,
+        "image_url": "https://images.genius.com/dab4680bbb0569024ef3df3d1e87c277.570x570x1.jpg",
+        "index_character": "j",
+        "is_meme_verified": true,
+        "is_verified": true,
+        "name": "JAY-Z",
+        "slug": "Jay-z",
+        "url": "https://genius.com/artists/Jay-z",
+        "iq": 225
+      }
+    },
+    {
+      "_type": "album",
+      "api_path": "/albums/127666",
+      "cover_art_thumbnail_url": "https://images.genius.com/0572d3c2a8305ab228c6cfdc3005ee89.300x300x1.jpg",
+      "cover_art_url": "https://images.genius.com/0572d3c2a8305ab228c6cfdc3005ee89.300x300x1.jpg",
+      "full_title": "The S. Carter Collection by JAY-Z",
+      "id": 127666,
+      "name": "The S. Carter Collection",
+      "name_with_artist": "The S. Carter Collection (artist: JAY-Z)",
+      "release_date_components": {
+        "year": 2003,
+        "month": 4,
+        "day": 18
+      },
+      "release_date_for_display": "April 18, 2003",
+      "url": "https://genius.com/albums/Jay-z/The-s-carter-collection",
+      "artist": {
+        "_type": "artist",
+        "api_path": "/artists/2",
+        "header_image_url": "https://images.genius.com/57f67753a0fe8ce5ff4a2ab903fbe850.500x301x1.png",
+        "id": 2,
+        "image_url": "https://images.genius.com/dab4680bbb0569024ef3df3d1e87c277.570x570x1.jpg",
+        "index_character": "j",
+        "is_meme_verified": true,
+        "is_verified": true,
+        "name": "JAY-Z",
+        "slug": "Jay-z",
+        "url": "https://genius.com/artists/Jay-z",
+        "iq": 225
+      }
+    },
+    {
+      "_type": "album",
+      "api_path": "/albums/4060",
+      "cover_art_thumbnail_url": "https://images.genius.com/8c4205ddaabf8e949d78c4448d9ef085.300x300x1.png",
+      "cover_art_url": "https://images.genius.com/8c4205ddaabf8e949d78c4448d9ef085.1000x1000x1.png",
+      "full_title": "Blueprint 2.1 by JAY-Z",
+      "id": 4060,
+      "name": "Blueprint 2.1",
+      "name_with_artist": "Blueprint 2.1 (artist: JAY-Z)",
+      "release_date_components": {
+        "year": 2003,
+        "month": 4,
+        "day": 8
+      },
+      "release_date_for_display": "April 8, 2003",
+      "url": "https://genius.com/albums/Jay-z/Blueprint-2-1",
+      "artist": {
+        "_type": "artist",
+        "api_path": "/artists/2",
+        "header_image_url": "https://images.genius.com/57f67753a0fe8ce5ff4a2ab903fbe850.500x301x1.png",
+        "id": 2,
+        "image_url": "https://images.genius.com/dab4680bbb0569024ef3df3d1e87c277.570x570x1.jpg",
+        "index_character": "j",
+        "is_meme_verified": true,
+        "is_verified": true,
+        "name": "JAY-Z",
+        "slug": "Jay-z",
+        "url": "https://genius.com/artists/Jay-z",
+        "iq": 225
+      }
+    },
+    {
+      "_type": "album",
+      "api_path": "/albums/4095",
+      "cover_art_thumbnail_url": "https://images.genius.com/3bef90d8c5699f773bdb93a513786c66.300x300x1.png",
+      "cover_art_url": "https://images.genius.com/3bef90d8c5699f773bdb93a513786c66.1000x1000x1.png",
+      "full_title": "The Blueprint\u00b2 The Gift & The Curse by JAY-Z",
+      "id": 4095,
+      "name": "The Blueprint\u00b2 The Gift & The Curse",
+      "name_with_artist": "The Blueprint\u00b2 The Gift & The Curse (artist: JAY-Z)",
+      "release_date_components": {
+        "year": 2002,
+        "month": 11,
+        "day": 12
+      },
+      "release_date_for_display": "November 12, 2002",
+      "url": "https://genius.com/albums/Jay-z/The-blueprint2-the-gift-the-curse",
+      "artist": {
+        "_type": "artist",
+        "api_path": "/artists/2",
+        "header_image_url": "https://images.genius.com/57f67753a0fe8ce5ff4a2ab903fbe850.500x301x1.png",
+        "id": 2,
+        "image_url": "https://images.genius.com/dab4680bbb0569024ef3df3d1e87c277.570x570x1.jpg",
+        "index_character": "j",
+        "is_meme_verified": true,
+        "is_verified": true,
+        "name": "JAY-Z",
+        "slug": "Jay-z",
+        "url": "https://genius.com/artists/Jay-z",
+        "iq": 225
+      }
+    },
+    {
+      "_type": "album",
+      "api_path": "/albums/4079",
+      "cover_art_thumbnail_url": "https://images.genius.com/a7449b38b8eab47232b379bc442a5f10.300x300x1.jpg",
+      "cover_art_url": "https://images.genius.com/a7449b38b8eab47232b379bc442a5f10.1000x1000x1.jpg",
+      "full_title": "MTV Unplugged by JAY-Z",
+      "id": 4079,
+      "name": "MTV Unplugged",
+      "name_with_artist": "MTV Unplugged (artist: JAY-Z)",
+      "release_date_components": {
+        "year": 2001,
+        "month": 12,
+        "day": 18
+      },
+      "release_date_for_display": "December 18, 2001",
+      "url": "https://genius.com/albums/Jay-z/Mtv-unplugged",
+      "artist": {
+        "_type": "artist",
+        "api_path": "/artists/2",
+        "header_image_url": "https://images.genius.com/57f67753a0fe8ce5ff4a2ab903fbe850.500x301x1.png",
+        "id": 2,
+        "image_url": "https://images.genius.com/dab4680bbb0569024ef3df3d1e87c277.570x570x1.jpg",
+        "index_character": "j",
+        "is_meme_verified": true,
+        "is_verified": true,
+        "name": "JAY-Z",
+        "slug": "Jay-z",
+        "url": "https://genius.com/artists/Jay-z",
+        "iq": 225
+      }
+    },
+    {
+      "_type": "album",
+      "api_path": "/albums/4058",
+      "cover_art_thumbnail_url": "https://images.genius.com/1aebfd816914351eb7010bd441822da8.300x300x1.jpg",
+      "cover_art_url": "https://images.genius.com/1aebfd816914351eb7010bd441822da8.1000x1000x1.jpg",
+      "full_title": "The Blueprint by JAY-Z",
+      "id": 4058,
+      "name": "The Blueprint",
+      "name_with_artist": "The Blueprint (artist: JAY-Z)",
+      "release_date_components": {
+        "year": 2001,
+        "month": 9,
+        "day": 11
+      },
+      "release_date_for_display": "September 11, 2001",
+      "url": "https://genius.com/albums/Jay-z/The-blueprint",
+      "artist": {
+        "_type": "artist",
+        "api_path": "/artists/2",
+        "header_image_url": "https://images.genius.com/57f67753a0fe8ce5ff4a2ab903fbe850.500x301x1.png",
+        "id": 2,
+        "image_url": "https://images.genius.com/dab4680bbb0569024ef3df3d1e87c277.570x570x1.jpg",
+        "index_character": "j",
+        "is_meme_verified": true,
+        "is_verified": true,
+        "name": "JAY-Z",
+        "slug": "Jay-z",
+        "url": "https://genius.com/artists/Jay-z",
+        "iq": 225
+      }
+    },
+    {
+      "_type": "album",
+      "api_path": "/albums/4066",
+      "cover_art_thumbnail_url": "https://images.genius.com/c91a9bc0eb9aaf290224ebeaabd243a0.300x300x1.jpg",
+      "cover_art_url": "https://images.genius.com/c91a9bc0eb9aaf290224ebeaabd243a0.640x640x1.jpg",
+      "full_title": "The Dynasty: Roc La Familia by JAY-Z",
+      "id": 4066,
+      "name": "The Dynasty: Roc La Familia",
+      "name_with_artist": "The Dynasty: Roc La Familia (artist: JAY-Z)",
+      "release_date_components": {
+        "year": 2000,
+        "month": 10,
+        "day": 31
+      },
+      "release_date_for_display": "October 31, 2000",
+      "url": "https://genius.com/albums/Jay-z/The-dynasty-roc-la-familia",
+      "artist": {
+        "_type": "artist",
+        "api_path": "/artists/2",
+        "header_image_url": "https://images.genius.com/57f67753a0fe8ce5ff4a2ab903fbe850.500x301x1.png",
+        "id": 2,
+        "image_url": "https://images.genius.com/dab4680bbb0569024ef3df3d1e87c277.570x570x1.jpg",
+        "index_character": "j",
+        "is_meme_verified": true,
+        "is_verified": true,
+        "name": "JAY-Z",
+        "slug": "Jay-z",
+        "url": "https://genius.com/artists/Jay-z",
+        "iq": 225
+      }
+    },
+    {
+      "_type": "album",
+      "api_path": "/albums/4102",
+      "cover_art_thumbnail_url": "https://images.genius.com/16c23bf8d7a8a73a71d30d2ec47600b1.300x300x1.jpg",
+      "cover_art_url": "https://images.genius.com/16c23bf8d7a8a73a71d30d2ec47600b1.1000x1000x1.jpg",
+      "full_title": "Vol.\u00a03\u2026 Life and Times of S.\u00a0Carter by JAY-Z",
+      "id": 4102,
+      "name": "Vol.\u00a03\u2026 Life and Times of S.\u00a0Carter",
+      "name_with_artist": "Vol.\u00a03\u2026 Life and Times of S.\u00a0Carter (artist: JAY-Z)",
+      "release_date_components": {
+        "year": 1999,
+        "month": 12,
+        "day": 28
+      },
+      "release_date_for_display": "December 28, 1999",
+      "url": "https://genius.com/albums/Jay-z/Vol-3-life-and-times-of-s-carter",
+      "artist": {
+        "_type": "artist",
+        "api_path": "/artists/2",
+        "header_image_url": "https://images.genius.com/57f67753a0fe8ce5ff4a2ab903fbe850.500x301x1.png",
+        "id": 2,
+        "image_url": "https://images.genius.com/dab4680bbb0569024ef3df3d1e87c277.570x570x1.jpg",
+        "index_character": "j",
+        "is_meme_verified": true,
+        "is_verified": true,
+        "name": "JAY-Z",
+        "slug": "Jay-z",
+        "url": "https://genius.com/artists/Jay-z",
+        "iq": 225
+      }
+    },
+    {
+      "_type": "album",
+      "api_path": "/albums/6533",
+      "cover_art_thumbnail_url": "https://images.genius.com/468783796ecd72d8bb5392de30aa84a7.220x220x1.jpg",
+      "cover_art_url": "https://images.genius.com/468783796ecd72d8bb5392de30aa84a7.220x220x1.jpg",
+      "full_title": "Jigga My Nigga [Single] by JAY-Z",
+      "id": 6533,
+      "name": "Jigga My Nigga [Single]",
+      "name_with_artist": "Jigga My Nigga [Single] (artist: JAY-Z)",
+      "release_date_components": {
+        "year": 1999,
+        "month": 5,
+        "day": 28
+      },
+      "release_date_for_display": "May 28, 1999",
+      "url": "https://genius.com/albums/Jay-z/Jigga-my-nigga-single",
+      "artist": {
+        "_type": "artist",
+        "api_path": "/artists/2",
+        "header_image_url": "https://images.genius.com/57f67753a0fe8ce5ff4a2ab903fbe850.500x301x1.png",
+        "id": 2,
+        "image_url": "https://images.genius.com/dab4680bbb0569024ef3df3d1e87c277.570x570x1.jpg",
+        "index_character": "j",
+        "is_meme_verified": true,
+        "is_verified": true,
+        "name": "JAY-Z",
+        "slug": "Jay-z",
+        "url": "https://genius.com/artists/Jay-z",
+        "iq": 225
+      }
+    },
+    {
+      "_type": "album",
+      "api_path": "/albums/4100",
+      "cover_art_thumbnail_url": "https://images.genius.com/1f3b917b779cd80ad127e64f21d6010a.300x300x1.jpg",
+      "cover_art_url": "https://images.genius.com/1f3b917b779cd80ad127e64f21d6010a.1000x1000x1.jpg",
+      "full_title": "Vol.\u00a02\u2026 Hard Knock Life by JAY-Z",
+      "id": 4100,
+      "name": "Vol.\u00a02\u2026 Hard Knock Life",
+      "name_with_artist": "Vol.\u00a02\u2026 Hard Knock Life (artist: JAY-Z)",
+      "release_date_components": {
+        "year": 1998,
+        "month": 9,
+        "day": 29
+      },
+      "release_date_for_display": "September 29, 1998",
+      "url": "https://genius.com/albums/Jay-z/Vol-2-hard-knock-life",
+      "artist": {
+        "_type": "artist",
+        "api_path": "/artists/2",
+        "header_image_url": "https://images.genius.com/57f67753a0fe8ce5ff4a2ab903fbe850.500x301x1.png",
+        "id": 2,
+        "image_url": "https://images.genius.com/dab4680bbb0569024ef3df3d1e87c277.570x570x1.jpg",
+        "index_character": "j",
+        "is_meme_verified": true,
+        "is_verified": true,
+        "name": "JAY-Z",
+        "slug": "Jay-z",
+        "url": "https://genius.com/artists/Jay-z",
+        "iq": 225
+      }
+    },
+    {
+      "_type": "album",
+      "api_path": "/albums/4093",
+      "cover_art_thumbnail_url": "https://images.genius.com/27d47c63a65d2f2dd93e8d05b73afab3.300x305x1.jpg",
+      "cover_art_url": "https://images.genius.com/27d47c63a65d2f2dd93e8d05b73afab3.983x1000x1.jpg",
+      "full_title": "Streets is Watching by JAY-Z",
+      "id": 4093,
+      "name": "Streets is Watching",
+      "name_with_artist": "Streets is Watching (artist: JAY-Z)",
+      "release_date_components": {
+        "year": 1998,
+        "month": 5,
+        "day": 12
+      },
+      "release_date_for_display": "May 12, 1998",
+      "url": "https://genius.com/albums/Jay-z/Streets-is-watching",
+      "artist": {
+        "_type": "artist",
+        "api_path": "/artists/2",
+        "header_image_url": "https://images.genius.com/57f67753a0fe8ce5ff4a2ab903fbe850.500x301x1.png",
+        "id": 2,
+        "image_url": "https://images.genius.com/dab4680bbb0569024ef3df3d1e87c277.570x570x1.jpg",
+        "index_character": "j",
+        "is_meme_verified": true,
+        "is_verified": true,
+        "name": "JAY-Z",
+        "slug": "Jay-z",
+        "url": "https://genius.com/artists/Jay-z",
+        "iq": 225
+      }
+    },
+    {
+      "_type": "album",
+      "api_path": "/albums/4071",
+      "cover_art_thumbnail_url": "https://images.genius.com/5d943fdf8e012d844a1b587b79e29b3d.300x300x1.jpg",
+      "cover_art_url": "https://images.genius.com/5d943fdf8e012d844a1b587b79e29b3d.1000x1000x1.jpg",
+      "full_title": "In My Lifetime, Vol. 1 by JAY-Z",
+      "id": 4071,
+      "name": "In My Lifetime, Vol. 1",
+      "name_with_artist": "In My Lifetime, Vol. 1 (artist: JAY-Z)",
+      "release_date_components": {
+        "year": 1997,
+        "month": 11,
+        "day": 4
+      },
+      "release_date_for_display": "November 4, 1997",
+      "url": "https://genius.com/albums/Jay-z/In-my-lifetime-vol-1",
+      "artist": {
+        "_type": "artist",
+        "api_path": "/artists/2",
+        "header_image_url": "https://images.genius.com/57f67753a0fe8ce5ff4a2ab903fbe850.500x301x1.png",
+        "id": 2,
+        "image_url": "https://images.genius.com/dab4680bbb0569024ef3df3d1e87c277.570x570x1.jpg",
+        "index_character": "j",
+        "is_meme_verified": true,
+        "is_verified": true,
+        "name": "JAY-Z",
+        "slug": "Jay-z",
+        "url": "https://genius.com/artists/Jay-z",
+        "iq": 225
+      }
+    },
+    {
+      "_type": "album",
+      "api_path": "/albums/4063",
+      "cover_art_thumbnail_url": "https://images.genius.com/18040c4f503942a16d6577d9820644cb.300x300x1.jpg",
+      "cover_art_url": "https://images.genius.com/18040c4f503942a16d6577d9820644cb.1000x1000x1.jpg",
+      "full_title": "Reasonable Doubt by JAY-Z",
+      "id": 4063,
+      "name": "Reasonable Doubt",
+      "name_with_artist": "Reasonable Doubt (artist: JAY-Z)",
+      "release_date_components": {
+        "year": 1996,
+        "month": 6,
+        "day": 25
+      },
+      "release_date_for_display": "June 25, 1996",
+      "url": "https://genius.com/albums/Jay-z/Reasonable-doubt",
+      "artist": {
+        "_type": "artist",
+        "api_path": "/artists/2",
+        "header_image_url": "https://images.genius.com/57f67753a0fe8ce5ff4a2ab903fbe850.500x301x1.png",
+        "id": 2,
+        "image_url": "https://images.genius.com/dab4680bbb0569024ef3df3d1e87c277.570x570x1.jpg",
+        "index_character": "j",
+        "is_meme_verified": true,
+        "is_verified": true,
+        "name": "JAY-Z",
+        "slug": "Jay-z",
+        "url": "https://genius.com/artists/Jay-z",
+        "iq": 225
+      }
+    },
+    {
+      "_type": "album",
+      "api_path": "/albums/1068158",
+      "cover_art_thumbnail_url": "https://images.genius.com/4c1c434698827c227d59b3ff75d30bc0.300x300x1.jpg",
+      "cover_art_url": "https://images.genius.com/4c1c434698827c227d59b3ff75d30bc0.340x340x1.jpg",
+      "full_title": "Demo Tape by JAY-Z",
+      "id": 1068158,
+      "name": "Demo Tape",
+      "name_with_artist": "Demo Tape (artist: JAY-Z)",
+      "release_date_components": {
+        "year": 1994,
+        "month": null,
+        "day": null
+      },
+      "release_date_for_display": "1994",
+      "url": "https://genius.com/albums/Jay-z/Demo-tape",
+      "artist": {
+        "_type": "artist",
+        "api_path": "/artists/2",
+        "header_image_url": "https://images.genius.com/57f67753a0fe8ce5ff4a2ab903fbe850.500x301x1.png",
+        "id": 2,
+        "image_url": "https://images.genius.com/dab4680bbb0569024ef3df3d1e87c277.570x570x1.jpg",
+        "index_character": "j",
+        "is_meme_verified": true,
+        "is_verified": true,
+        "name": "JAY-Z",
+        "slug": "Jay-z",
+        "url": "https://genius.com/artists/Jay-z",
+        "iq": 225
+      }
+    }
+  ],
+  "next_page": null
+}
