@@ -73,22 +73,38 @@ const SearchPage = () => {
 
   const handleKeyDown = (e) => {
     if (e.key === 'ArrowDown') {
-      setHighlightedIndex((prevIndex) => Math.min(prevIndex + 1, results.artists.length - 1));
+      setHighlightedIndex((prevIndex) => Math.min(prevIndex + 1, totalResults() - 1));
     } else if (e.key === 'ArrowUp') {
       setHighlightedIndex((prevIndex) => Math.max(prevIndex - 1, 0));
     } else if (e.key === 'Enter' && highlightedIndex >= 0) {
-      handleItemClick('artist', results.artists[highlightedIndex].i);
+      const { type, id } = getItemTypeAndId(highlightedIndex);
+      handleItemClick(type, id);
     }
   };
 
-  const handleItemClick = (type, i) => {
-    navigate(`/artist/${i}`);
+  const totalResults = () => {
+    return results.artists.length + results.albums.length + results.songs.length;
+  };
+
+  const getItemTypeAndId = (index) => {
+    if (index < results.artists.length) {
+      return { type: 'artist', id: results.artists[index].artistId };
+    } else if (index < results.artists.length + results.albums.length) {
+      const albumIndex = index - results.artists.length;
+      return { type: 'album', id: results.albums[albumIndex].albumId };
+    } else {
+      const songIndex = index - results.artists.length - results.albums.length;
+      return { type: 'album', id: `${results.songs[songIndex].albumId[0]}/${results.songs[songIndex].songId}` };
+    }
+  };
+
+  const handleItemClick = (type, id) => {
+    navigate(`/${type}/${id}`);
   };
 
   return (
     <div ref={vantaRef} className="min-h-screen font-bold text-white flex flex-col items-center justify-center bg-base-100 p-8">
       <h1 className="text-10xl">Analyrics</h1>
-      <h1 className="text-xl mb-4 font-light">Analyze Any Artist's Lyrics</h1>
       <div className="form-control w-full max-w-md text-white text-center relative">
         <input
           type="text"
@@ -99,18 +115,35 @@ const SearchPage = () => {
           onFocus={() => setIsFocused(true)}
           onBlur={() => setTimeout(() => setIsFocused(false), 100)} // Delay to allow click event
           onKeyDown={handleKeyDown}
-          onKeyPress={(e) => e.key === 'Enter' && handleSearch(e)}
         />
-        {isFocused && results.artists.length > 0 && (
-          <div className="absolute text-left top-full left-0 right-0 bg-black w-full rounded-3xl p-4 text-white opacity-50 font-normal">
+        {isFocused && totalResults() > 0 && (
+          <div className="absolute text-left top-full left-0 right-0 bg-black w-full rounded-3xl p-4 text-white opacity-50 font-normal max-h-80 overflow-auto">
             <ul>
-              {results.artists.map((artist, index) => (
+              {results.artists.slice(0, 20).map((artist, index) => (
                 <li
-                  key={artist.i}
-                  onMouseDown={() => handleItemClick('artist', artist.i)}
+                  key={artist.artistId}
+                  onMouseDown={() => handleItemClick('artist', artist.artistId)}
                   className={`cursor-pointer hover:bg-gray-700 p-2 rounded-md ${highlightedIndex === index ? 'bg-gray-700' : ''}`}
                 >
                   {artist.name}
+                </li>
+              ))}
+              {results.artists.length < 20 && results.albums.slice(0, 20 - results.artists.length).map((album, index) => (
+                <li
+                  key={album.albumId}
+                  onMouseDown={() => handleItemClick('album', album.albumId)}
+                  className={`cursor-pointer hover:bg-gray-700 p-2 rounded-md ${highlightedIndex === index + results.artists.length ? 'bg-gray-700' : ''}`}
+                >
+                  {album.name}
+                </li>
+              ))}
+              {results.artists.length + results.albums.length < 20 && results.songs.slice(0, 20 - results.artists.length - results.albums.length).map((song, index) => (
+                <li
+                  key={song.songId}
+                  onMouseDown={() => handleItemClick('album', `${song.albumId[0]}/${song.songId}`)}
+                  className={`cursor-pointer hover:bg-gray-700 p-2 rounded-md ${highlightedIndex === index + results.artists.length + results.albums.length ? 'bg-gray-700' : ''}`}
+                >
+                  {song.name}
                 </li>
               ))}
             </ul>
@@ -119,6 +152,6 @@ const SearchPage = () => {
       </div>
     </div>
   );
-};
+}
 
 export default SearchPage;

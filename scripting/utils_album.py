@@ -1,6 +1,9 @@
 from datetime import datetime
 from typing import List, Dict, Any
 from collections import Counter
+from typing import Optional
+import logging
+import re
 
 def get_id_album(album_obj: Dict[str, Any], local_album_document: Dict[str, Any], atlas_album_document: Dict[str, Any]) -> str:
     album_id = album_obj["id"]
@@ -9,19 +12,51 @@ def get_id_album(album_obj: Dict[str, Any], local_album_document: Dict[str, Any]
     return album_id
 
 def get_name_album(album_obj: Dict[str, Any], local_album_document: Dict[str, Any], atlas_album_document: Dict[str, Any]) -> str:
+    words_to_remove = {
+        "edition", "exclusive", "(live)", "remix", "video", "version", "deluxe", 
+        "mix", "festival", "apple", "spotify", "live", "rerelease", "bonus", 
+        "collection", "best of", "anthology", "hits", "greatest hits", "remixes", 
+        "video", "edition", "mixes", "compilation", "exclusive", "mix", "remastered", 
+        "reissue", "expanded", "digital booklet", "anniversary", "radio", "edit",  
+        "unplugged", "acoustic", "instrumental", "karaoke", "demo", 
+        "b-sides", "soundtrack", "live recording", 
+        "studio", "mono", "stereo", "alternate", "bonus", "concert", 
+        "enhanced", "EP", "cappella", "special", 
+        "podcast", "interview", "cover", "tribute", "bootleg", "draft"
+    }
     name = album_obj["name"]
+
+    lowername = name.lower()
+    lowername = re.sub(r'[^a-z\s]', '', lowername)
+    lowername = lowername.split()
+    #remove special characters in lowername
+    for word in lowername:
+        word = re.sub(r'[^\w\s]', '', word)
+    #if any of these words are in the name throw exception
+    for word in lowername:
+        if word in words_to_remove:
+            raise Exception("Name contains special word \n Name: " + name + " Word: " + word)
+
     local_album_document["name"] = name
     atlas_album_document["name"] = name
     return name
 
-def get_release_date_album(album_obj: Dict[str, Any], local_album_document: Dict[str, Any], atlas_album_document: Dict[str, Any]) -> str:
-    release_date_components = album_obj.get("release_date_components")
-    if release_date_components:
-        year = release_date_components.get("year", 1)
-        month = release_date_components.get("month", 1)
-        day = release_date_components.get("day", 1)
-        release_date = datetime(year, month, day).isoformat()
-    else:
+def get_release_date_album(album_obj: Dict[str, Any], local_album_document: Dict[str, Any], atlas_album_document: Dict[str, Any]) -> Optional[str]:
+    try:
+        release_date_components = album_obj.get("release_date_components")
+        if release_date_components:
+            year = release_date_components.get("year", 1)
+            month = release_date_components.get("month", 1)
+            day = release_date_components.get("day", 1)
+            try:
+                release_date = datetime(year, month, day).isoformat()
+            except Exception as e:
+                logging.error("Error creating datetime for release date: %s", e)
+                release_date = None
+        else:
+            release_date = None
+    except Exception as e:
+        logging.error("Error extracting release date components: %s", e)
         release_date = None
     
     local_album_document["releaseDate"] = release_date

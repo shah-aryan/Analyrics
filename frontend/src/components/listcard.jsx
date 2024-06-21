@@ -4,7 +4,7 @@ import { CiSquareQuestion } from "react-icons/ci";
 const ListCard = ({ title, icon = <CiSquareQuestion /> }) => {
   return (
     <div className="relative flex items-center p-2 bg-base-300 rounded-xl m-4 outline outline-1 outline-neutral-content hover:bg-opacity-80">
-      <div className="flex-shrink-0 p-2 bg-neutral-content rounded-xl">
+      <div className="p-2 bg-neutral-content rounded-xl">
         <span className="text-success">{icon}</span>
       </div>
       <span className="ml-4 text-warning font-medium">{title}</span>

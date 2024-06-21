@@ -3,6 +3,7 @@ from collections import Counter
 from nrclex import NRCLex
 from textatistic import Textatistic
 from typing import List, Dict, Any, Tuple
+from nltk.corpus import stopwords
 
 def update_lyrics_song(song_lyrics: str, song_document_local: Dict[str, Any]) -> None:
     song_document_local['lyrics'] = song_lyrics
@@ -39,6 +40,13 @@ def count_characters(lyrics: str, song_document_local: Dict[str, Any], song_docu
 def count_words(lyrics: str, song_document_local: Dict[str, Any], song_document_atlas: Dict[str, Any]) -> Tuple[int, Counter]:
     words = lyrics.split()
     count = len(words)
+    stop_words = stopwords.words('english')
+    stop_words = [re.sub(r'[^\w\s]', '', word) for word in stop_words]
+    stop_words = set(stop_words)
+    stop_words.add('im')
+    stop_words.add('oh')
+    stop_words.add('like')
+    words = [word for word in words if word not in stop_words]
     word_counts = Counter(words)
     song_document_local['numWords'] = count
     song_document_atlas['numWords'] = count
@@ -60,7 +68,7 @@ def analyze_emotions(text: str, song_document_local: Dict[str, Any], song_docume
     song_document_atlas['sentiments'] = emotion_list
     return emotion_list
 
-def get_top_x_words(counter_obj: Counter, num: int = 25) -> List[Tuple[str, int]]:
+def get_top_x_words(counter_obj: Counter, num: int = 150) -> List[Tuple[str, int]]:
     return counter_obj.most_common(num)
 
 def calculate_reading_level(song_lyrics: str, song_document_local: Dict[str, Any], song_document_atlas: Dict[str, Any]) -> float:

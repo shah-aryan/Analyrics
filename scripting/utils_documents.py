@@ -1,6 +1,6 @@
 #all fields on these document are required
 
-artist_document_local = {
+ARTIST_LOCAL_TEMPLATE = {
     'artistId': 0,  # int
     'name': '',  # str
     'albumIds': [],  # list of int
@@ -12,12 +12,10 @@ artist_document_local = {
     'numSongs': 0,  # int
     'numChars': 0,  # int
     'sentiments': [],  # list of float
-    'fivePopularSongs': [],  # list of int
-    'numChars': 0,  # int
-
+    'numChars': 0  # int
 }
 
-album_document_local = {
+ALBUM_LOCAL_TEMPLATE = {
     'albumId': 0,  # int
     'artistId': [],  # list of int
     'name': '',  # str
@@ -28,15 +26,13 @@ album_document_local = {
     'vocabSize': 0,  # int
     'sentiments': [],  # list of float
     'collaborations': {},  # dict of int, int
-    'numberInDiscography': 0,  # int
     'readingLevel': 0.0,  # float
-    'numChars': 0,  # int
-
+    'numChars': 0  # int
 }
 
-song_document_local = {
+SONG_LOCAL_TEMPLATE = {
     'songId': 0,  # int
-    'albumId': 0,  # int
+    'albumId': [],  # int
     'artistId': [],  # list of int
     'name': '',  # str
     'releaseDate': '',  # str (ISO 8601 date)
@@ -48,10 +44,10 @@ song_document_local = {
     'readingLevel': 0.0,  # float
     'collaborations': {},  # dict of int, int
     'numInAlbum': 0,  # int
-    'numChars': 0,  # int
+    'numChars': 0  # int
 }
 
-artist_document_atlas = {
+ARTIST_ATLAS_TEMPLATE = {
     'artistId': 0,  # int
     'name': '',  # str
     'albumIds': [],  # list of int
@@ -62,11 +58,10 @@ artist_document_atlas = {
     'numWords': 0,  # int
     'numSongs': 0,  # int
     'numChars': 0,  # int
-    'sentiments': [],  # list of dict of float
-    'fivePopularSongs': []  # list of dict of int
+    'sentiments': []  # list of dict of float
 }
 
-album_document_atlas = {
+ALBUM_ATLAS_TEMPLATE = {
     'albumId': 0,  # int
     'artistId': [],  # list of int
     'name': '',  # str
@@ -77,14 +72,13 @@ album_document_atlas = {
     'vocabSize': 0,  # int
     'sentiments': [],  # list of float
     'collaborations': {},  # dict of int, int
-    'numberInDiscography': 0,  # int
     'readingLevel': 0.0,  # float
     'numChars': 0,  # int
 }
 
-song_document_atlas = {
+SONG_ATLAS_TEMPLATE = {
     'songId': 0,  # int
-    'albumId': 0,  # int
+    'albumId': [],  # int
     'artistId': [],  # list of int
     'name': '',  # str
     'releaseDate': '',  # str (ISO 8601 date)
@@ -100,17 +94,17 @@ song_document_atlas = {
 
 
 
-def clear_document(document: dict) -> None:
-    for key in document:
-        if isinstance(document[key], list):
-            document[key] = []
-        elif isinstance(document[key], dict):
-            document[key] = {}
-        elif isinstance(document[key], int):
-            document[key] = 0
-        elif isinstance(document[key], str):
-            document[key] = ''
-        elif isinstance(document[key], float):
-            document[key] = 0.0
-        else:
-            document[key] = None
+# def clear_document(document: dict) -> None:
+#     for key in document:
+#         if isinstance(document[key], list):
+#             document[key] = []
+#         elif isinstance(document[key], dict):
+#             document[key] = {}
+#         elif isinstance(document[key], int):
+#             document[key] = 0
+#         elif isinstance(document[key], str):
+#             document[key] = ''
+#         elif isinstance(document[key], float):
+#             document[key] = 0.0
+#         else:
+#             document[key] = None

@@ -23,8 +23,8 @@ const CardList = ({title = "example", subtitle = "example", icon = <CiSquareQues
   }
 
   return (
-    <div className="flex h-full">
-      <div className="bg-base-200 h-full min-w-72 rounded-3xl outline outline-1 outline-base-300 flex flex-col">
+    <div className="flex h-full w-full">
+      <div className="bg-base-200 rounded-3xl outline outline-1 outline-base-300 flex flex-col w-full">
         <div className="flex justify-center items-center text-center text-l text-info pt-4">
           <span className="text-accent">{icon}</span>
           <span className="ml-2">{subtitle}</span>
