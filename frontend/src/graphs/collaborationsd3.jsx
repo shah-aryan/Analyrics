@@ -11,31 +11,17 @@ const D3Chart = ({ artistName = "Error", numSongs = 1, collaborations = {} }) =>
   const top10Collaborations = useMemo(() => {
     const collaborationsArray = Object.entries(collaborations);
     collaborationsArray.sort((a, b) => b[1] - a[1]);
+    const filteredCollaborations = collaborationsArray.filter(collab => collab[0] !== artistName);
+    return filteredCollaborations.slice(0, 10);
+  }, [collaborations, artistName]);
 
-    // Remove self collaborations
-    for (let i = 0; i < collaborationsArray.length; i++) {
-      if (collaborationsArray[i][0] === artistName) {
-        collaborationsArray.splice(i, 1);
-        break;
-      }
-    }
-
-    return collaborationsArray.slice(0, 10);
-  }, [collaborations]);
-
-  useEffect(() => {
-    if (top10Collaborations.length < 2) {
-      return;
-    }
-
-    const ids = top10Collaborations.map(collab => collab[0]);
-
-    if (!hasFetchedData.current && ids.length >= 2) {
-      console.log('Sending request with ids:', ids);
+  // Always ensure the hook order remains consistent
+  const fetchData = () => {
+    if (top10Collaborations.length >= 2 && !hasFetchedData.current) {
+      const ids = top10Collaborations.map(collab => collab[0]);
       axios.post('http://localhost:5555/lookup', { ids })
         .then(response => {
           if (response.status === 200) {
-            console.log('Response data:', response.data);
             setNames(response.data);
             hasFetchedData.current = true;
           } else {
@@ -46,7 +32,9 @@ const D3Chart = ({ artistName = "Error", numSongs = 1, collaborations = {} }) =>
           console.error('Error:', error);
         });
     }
-  }, [top10Collaborations]);
+  };
+
+  useEffect(fetchData, [top10Collaborations]);
 
   useEffect(() => {
     if (names.length < 10) {
@@ -54,9 +42,13 @@ const D3Chart = ({ artistName = "Error", numSongs = 1, collaborations = {} }) =>
     }
   }, [names]);
 
+  let tooSmall = false;
+
   if (top10Collaborations.length < 2) {
-    return <div className="flex h-full w-full justify-center mt-32">Too few Collaborations Found</div>;
+    tooSmall = true;
   }
+
+  if (!tooSmall) {
 
   const maxCollaborations = top10Collaborations[0][1];
   const weights = top10Collaborations.map(collab => collab[1] / maxCollaborations);
@@ -90,13 +82,16 @@ const D3Chart = ({ artistName = "Error", numSongs = 1, collaborations = {} }) =>
     }
   }
 
-  const data = {
+  var data = {
     nodes,
     links
   };
+}
 
   useEffect(() => {
+    
     const renderChart = () => {
+      if (!tooSmall) {
       const parent = chartRef.current.parentElement;
       const width = parent.clientWidth;
       const height = parent.clientHeight;
@@ -135,7 +130,7 @@ const D3Chart = ({ artistName = "Error", numSongs = 1, collaborations = {} }) =>
       node.append("title").text(d => d.id);
 
       const simulation = d3.forceSimulation(nodes)
-        .force("link", d3.forceLink(links).id(d => d.id).distance(d => Math.min(width, (height - 100)) * 0.4 * ((1.2 - d.weight))))
+        .force("link", d3.forceLink(links).id(d => d.id).distance(d => Math.min(width, (height - 100)) * 0.4 * ((1.5 - d.weight))))
         .force("charge", d3.forceManyBody().strength(-height / 5))
         .force("center", d3.forceCenter(width / 2, height / 2 + offsetY))
         .force("x", d3.forceX(width / 2).strength(0.05))
@@ -210,6 +205,7 @@ const D3Chart = ({ artistName = "Error", numSongs = 1, collaborations = {} }) =>
         svg.selectAll("*").remove();
         tooltip.remove();
       };
+    }
     };
 
     renderChart();

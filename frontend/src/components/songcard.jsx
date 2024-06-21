@@ -1,7 +1,8 @@
 import React from 'react';
 import { FaMusic } from "react-icons/fa6";
 
-const SongCard = ({ song }) => {
+const SongCard = ({ song, isTarget }) => {
+
   const year = new Date(song.releaseDate).getFullYear();
   const name = song.name;
   const id = song.songId;
@@ -26,10 +27,20 @@ const SongCard = ({ song }) => {
     }
   }
 
+  const repetivenessScore = song.numWords / song.numUniqueWords;
+
+  let wordsCounter = song.top25words;
+  //find topWord - top25words are an array of arrays with first entry of each small array string and second as number
+  let topWord = wordsCounter[0][0];
+  //capitalize first letter
+  topWord = topWord.charAt(0).toUpperCase() + topWord.slice(1);
+  
+
+
   topEmotion = topEmotion.charAt(0).toUpperCase() + topEmotion.slice(1);
 
   return (
-    <div className="bg-base-200 rounded-3xl outline outline-1 outline-base-300 h-full w-full p-4 flex flex-col">
+    <div className={`bg-base-200 rounded-3xl outline outline-1 ${isTarget ? 'outline-accent' : 'outline-base-300'} h-full w-full p-4 flex flex-col`}>
       <div className="flex flex-col items-center text-center text-l text-info pt-4 h-24" style={{ minHeight: '4em', justifyContent: 'center' }}>
         <div className="flex items-center text-accent">
           <FaMusic />
@@ -55,13 +66,13 @@ const SongCard = ({ song }) => {
       </div>
       <hr className="border-t-1 border-neutral-content m-3" />
       <div className="flex justify-between">
-        <span className="text-info">Words</span>
-        <span className="text-white">{song.numWords}</span>
+        <span className="text-info">Repetiveness</span>
+        <span className="text-white">{repetivenessScore.toFixed(2)}</span>
       </div>
       <hr className="border-t-1 border-neutral-content m-3" />
       <div className="flex justify-between">
-        <span className="text-info">Unique Words</span>
-        <span className="text-white">{song.numUniqueWords}</span>
+        <span className="text-info">Top Word</span>
+        <span className="text-white">{topWord}</span>
       </div>
       <hr className="border-t-1 border-neutral-content m-3" />
       <div className="flex justify-between">

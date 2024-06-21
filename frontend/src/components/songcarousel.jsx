@@ -7,21 +7,11 @@ const SongCarousel = ({ songs, targetSongId }) => {
   const carouselRef = useRef(null);
   const timeoutRef = useRef(null);
 
-  //sort songs object by numInAlbum
-  songs.sort((a, b) => {
-    if (a.numInAlbum && b.numInAlbum) {
-      return a.numInAlbum - b.numInAlbum;
-    } else if (a.numInAlbum) {
-      return -1;
-    } else if (b.numInAlbum) {
-      return 1;
-    } else {
-      return 0;
-    }
-  });
+  // Sort songs object by numInAlbum
+  songs.sort((a, b) => (a.numInAlbum && b.numInAlbum ? a.numInAlbum - b.numInAlbum : a.numInAlbum ? -1 : b.numInAlbum ? 1 : 0));
 
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+    setCurrentIndex(prevIndex => Math.max(prevIndex - 1, 0));
     if (carouselRef.current) {
       const scrollAmount = carouselRef.current.children[0].offsetWidth + 16;
       carouselRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
@@ -29,7 +19,7 @@ const SongCarousel = ({ songs, targetSongId }) => {
   };
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, songs.length - 1));
+    setCurrentIndex(prevIndex => Math.min(prevIndex + 1, songs.length - 1));
     if (carouselRef.current) {
       const scrollAmount = carouselRef.current.children[0].offsetWidth + 16;
       carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
@@ -67,8 +57,11 @@ const SongCarousel = ({ songs, targetSongId }) => {
 
   useEffect(() => {
     if (targetSongId && carouselRef.current) {
-      const targetIndex = songs.findIndex(song => song.songId === targetSongId);
+      let targetIndex = songs.findIndex(song => song.songId === targetSongId);
       if (targetIndex !== -1) {
+        if (targetIndex > 0) {
+          targetIndex = targetIndex - 1;
+        }
         setCurrentIndex(targetIndex);
         const scrollAmount = carouselRef.current.children[0].offsetWidth + 16;
         carouselRef.current.scrollTo({ left: targetIndex * scrollAmount, behavior: 'smooth' });
@@ -78,10 +71,14 @@ const SongCarousel = ({ songs, targetSongId }) => {
 
   return (
     <div className="relative w-full h-full">
-      <div ref={carouselRef} className="carousel carousel-start space-x-4 bg-base-100 rounded-3xl h-full w-full overflow-x-auto scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-track-neutral-content scrollbar-thumb-slate-300">
+      <div ref={carouselRef} className="carousel carousel-start bg-base-100 rounded-3xl h-full w-full overflow-x-auto scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-track-neutral-content scrollbar-thumb-slate-300 p-1">
+        <div className='carousel-item w-0.5'/>
         {songs.map((song, index) => (
-          <div key={index} className="carousel-item flex items-center justify-center bg-base-200 rounded-3xl sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/4 outline outline-1 outline-base-300 overflow-y-hidden">
-            <SongCard song={song} />
+          <div 
+            key={index} 
+            className={`carousel-item flex items-center justify-center bg-base-200 rounded-3xl sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/4 outline outline-1 ${song.songId === targetSongId ? 'outline-accent' : 'outline-base-300'} overflow-y-hidden mr-4`}
+          >
+            <SongCard song={song} isTarget={song.songId === targetSongId} />
           </div>
         ))}
       </div>

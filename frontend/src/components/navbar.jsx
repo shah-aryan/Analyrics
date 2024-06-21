@@ -37,7 +37,7 @@ const NavBar = ({ title }) => {
       return { type: 'album', id: results.albums[albumIndex].albumId };
     } else {
       const songIndex = index - results.artists.length - results.albums.length;
-      return { type: 'album', id: results.songs[songIndex].albumId[0] + "/" + results.songs[songIndex].songId };
+      return { type: 'album', id: `${results.songs[songIndex].albumId[0]}/${results.songs[songIndex].songId}` };
     }
   };
 
@@ -92,7 +92,7 @@ const NavBar = ({ title }) => {
                   {results.artists.length + results.albums.length < 20 && results.songs.slice(0, 20 - results.artists.length - results.albums.length).map((song, index) => (
                     <li
                       key={song.songId}
-                      onMouseDown={() => handleItemClick('song', song.songId)}
+                      onMouseDown={() => handleItemClick('album', `${song.albumId[0]}/${song.songId}`)}
                       className={`cursor-pointer hover:bg-gray-700 p-2 rounded-md ${highlightedIndex === index + results.artists.length + results.albums.length ? 'bg-gray-700' : ''}`}
                     >
                       {song.name}

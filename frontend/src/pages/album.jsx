@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 import SmallCard from '../components/smallcard.jsx';
@@ -25,10 +25,33 @@ import { RiNumbersFill } from "react-icons/ri";
 import { FaRulerVertical } from "react-icons/fa";
 
 const AlbumLayout = () => {
+
+  function ScrollToBottom(songId, albumId) {
+    const location = useLocation();
+  
+    useEffect(() => {
+
+      if (albumId !== songId) {
+      // Scroll to the bottom when the component mounts or when the location changes
+        window.scrollTo(0, document.body.scrollHeight);
+      }
+    }, [location]);
+  
+    return null; // This component doesn't render anything visible
+  }
+
   const { i , j } = useParams();
   //convert to int
   const albumId = parseInt(i);
   let songId = parseInt(j);
+  ScrollToBottom(songId, albumId);
+
+  let currentURL = useLocation().pathname;
+  //get songId by getting all characters from the back until a '/'
+  songId = parseInt(currentURL.slice(currentURL.lastIndexOf('/') + 1));
+
+  console.log("albumId: ", albumId);
+  console.log("songId: ", songId);
 
   if (isNaN(songId) || songId < 0) {
     songId = -1;
@@ -116,8 +139,7 @@ const AlbumLayout = () => {
             <GraphHolder title="Top Words in Album" subtitle="Word Cloud" icon={<FaCloud />} chart={<WordCloud words_obj={words_obj} />} />
           </div>
           <div className="order-4 row-span-4 col-span-24 md:col-span-12 lg:col-span-8 xl:col-span-6 xl:row-span-6 sm:h-auto">
-            <GraphHolder title="Hover To See Collaborations" subtitle="Interactive Collaborations Visualizer" icon={<FaPeopleGroup />}              chart={<D3Chart artistName={name} numSongs={numberOfSongs} collaborations={albumData.collaborations} />}
-            />
+            <GraphHolder title="Hover To See Collaborations" subtitle="Interactive Collaborations Visualizer" icon={<FaPeopleGroup />}              chart={<D3Chart artistName={name} numSongs={numberOfSongs} collaborations={albumData.collaborations} />}/>
           </div>
           <div className="order-5 row-span-4 col-span-24 md:col-span-12 lg:col-span-6 xl:col-span-4 xl:row-span-6">
             <GraphHolder title="Album Sentiments" subtitle="Sentiments" icon={<FaSmile />} chart={<PieChart sentiments={sentiments} />} />
@@ -134,7 +156,6 @@ const AlbumLayout = () => {
             <SmallCard number={averageWordLength} label="Avg Word Size" icon={<FaRulerVertical />} showPlus={false} />
           </div>
           </div>
-
           <div className="col-span-24 xl:order-6 order-8 row-span-4 md:col-span-24 lg:col-span-24 xl:col-span-14 xl:row-span-6">
             <SongCarousel songs={albumData.songsObj} targetSongId={songId}/>
           </div>

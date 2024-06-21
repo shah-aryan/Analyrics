@@ -102,6 +102,11 @@ def process_song(genius, track, album_id, artist_id, db_local, db_atlas, album_d
         unique_words_set = {}
         song_document_atlas['top25words'] = {}
 
+    #clear them all before appending
+    song_document_local['albumId'].clear()
+    song_document_atlas['albumId'].clear()
+    song_document_local['artistId'].clear()
+    song_document_atlas['artistId'].clear()
     #change to append it to the array (album id and artist id are arrays of ids)
     song_document_local['albumId'].append(album_id)
     song_document_atlas['albumId'].append(album_id)
