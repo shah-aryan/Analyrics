@@ -6,6 +6,7 @@ import AlbumLayout from './pages/album.jsx';
 import SongLayout from './pages/song.jsx';
 import NotFound from './pages/404.jsx';
 
+
 const AppContent = () => {
   const location = useLocation();
   

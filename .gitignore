@@ -12,3 +12,5 @@ scripting/api_key.py
 .env
 scripting/acquisition.py
 scripting/venv
+backend/config.js
+backend/.env
