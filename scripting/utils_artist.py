@@ -63,3 +63,5 @@ def get_num_chars_artist(albums_documents_local: list, local_artist_document: di
     local_artist_document['numChars'] = num_chars
     atlas_artist_document['numChars'] = num_chars
     return num_chars
+
+#test
