@@ -49,9 +49,9 @@ def get_name_song(song_obj: dict, local_song_document: dict, atlas_song_document
     "video", "edition", "mixes", "compilation", "exclusive", "mix", "remastered", 
     "reissue", "expanded", "digital booklet", "anniversary", "radio", "edit",  
     "unplugged", "acoustic", "instrumental", "karaoke", "demo", 
-    "b-sides", "soundtrack", 
+    "b-sides", "soundtrack",  "itunes", "amazon", "google",
     "studio", "mono", "stereo", "alternate", "bonus", "concert", 
-    "enhanced", "EP", "cappella", "special", 
+    "enhanced", "EP", "cappella", "special", "tour",
     "podcast", "interview", "cover", "tribute", "bootleg", 
     }
     name = song_obj["song"]["title"]

@@ -1,9 +1,9 @@
-import lyricsgenius
 from dotenv import load_dotenv
 import os
 from pymongo import MongoClient
 import logging
 import concurrent.futures
+from acquisition import initialize_client
 
 from utils_lyrics import *
 from utils_artist import *
@@ -33,7 +33,6 @@ from utils_documents import *
 
 # db_test = MongoClient(os.getenv("MONGO_URI"))['test']
 
-
 def initialize_mongo_clients():
     mongodb_uri = os.getenv("MONGO_URI")
     mongodb_local_uri = os.getenv("MONGO_LOCAL_URI")
@@ -41,11 +40,7 @@ def initialize_mongo_clients():
     client_local = MongoClient(mongodb_local_uri)
     return client, client_local
 
-def initialize_genius_client():
-    client_access_token = os.getenv("CLIENT_ACCESS_TOKEN")
-    return lyricsgenius.Genius(client_access_token, timeout=5, sleep_time=0.1, retries=3)
-
-def process_song(genius, track, album_id, artist_id, db_local, db_atlas, album_document_local, album_document_atlas):
+def process_song(lyr, track, album_id, artist_id, db_local, db_atlas, album_document_local, album_document_atlas):
     song_document_local = SONG_LOCAL_TEMPLATE.copy()
     song_document_atlas = SONG_ATLAS_TEMPLATE.copy()
     song_id = get_id_song(track, song_document_local, song_document_atlas, db_local, db_atlas, album_document_local, album_document_atlas, album_id)
@@ -53,7 +48,7 @@ def process_song(genius, track, album_id, artist_id, db_local, db_atlas, album_d
         return None
     
     try:
-        song_lyrics = genius.lyrics(song_id, remove_section_headers=True)
+        song_lyrics = lyr.lyrics(song_id, remove_section_headers=True)
         song_lyrics = remove_first_line(song_lyrics)
         song_lyrics = remove_end_info(song_lyrics)
         song_lyrics = remove_special_characters(song_lyrics)
@@ -84,7 +79,6 @@ def process_song(genius, track, album_id, artist_id, db_local, db_atlas, album_d
         song_document_atlas['readingLevel'] = 0.0
         song_document_atlas['numWords'] = 0
         song_document_atlas['numChars'] = 0
-
 
     get_name_song(track, song_document_local, song_document_atlas)
     get_release_date_song(track, song_document_local, song_document_atlas)
@@ -122,12 +116,11 @@ def process_song(genius, track, album_id, artist_id, db_local, db_atlas, album_d
 
     return song_document_local, song_document_atlas, unique_words_set
 
-def process_album(genius, album_obj, artist_id, db_local, db_atlas):
+def process_album(lyr, album_obj, artist_id, db_local, db_atlas):
     album_document_local = ALBUM_LOCAL_TEMPLATE.copy()
     album_document_atlas = ALBUM_ATLAS_TEMPLATE.copy()
 
     album_id = get_id_album(album_obj, album_document_local, album_document_atlas)
-
 
     get_name_album(album_obj, album_document_local, album_document_atlas)
     get_release_date_album(album_obj, album_document_local, album_document_atlas)
@@ -137,7 +130,7 @@ def process_album(genius, album_obj, artist_id, db_local, db_atlas):
         logging.error("  No release date for album {id}".format(id=album_id))
         return None
 
-    tracks = genius.album_tracks(album_id)["tracks"]
+    tracks = lyr.album_tracks(album_id)["tracks"]
 
     if len(tracks) == 0:
         print("No tracks in album {id}".format(id=album_id))
@@ -153,7 +146,7 @@ def process_album(genius, album_obj, artist_id, db_local, db_atlas):
     album_document_atlas['songs'].clear()
 
     with concurrent.futures.ThreadPoolExecutor() as executor:
-        futures = [executor.submit(process_song, genius, track, album_id, artist_id, db_local, db_atlas, album_document_local, album_document_atlas) for track in tracks]
+        futures = [executor.submit(process_song, lyr, track, album_id, artist_id, db_local, db_atlas, album_document_local, album_document_atlas) for track in tracks]
         for future in concurrent.futures.as_completed(futures):
             try:
                 song_doc_local, song_doc_atlas, unique_words_set = future.result()
@@ -195,20 +188,27 @@ def process_album(genius, album_obj, artist_id, db_local, db_atlas):
 
     return album_document_local, album_document_atlas, unique_words_album
 
-def process_artist(genius, artist_name, db_local, db_atlas):
+def process_artist(lyr, artist_name, db_local, db_atlas):
     artist_document_local = ARTIST_LOCAL_TEMPLATE.copy()
     artist_document_atlas = ARTIST_ATLAS_TEMPLATE.copy()
 
-    artist_obj = genius.search(search_term=artist_name, type_="artist")
+    artist_obj = lyr.search(search_term=artist_name, type_="artist")
     artist_id = get_id_artist(artist_obj, artist_document_local, artist_document_atlas)
+
+    #if the artist id is already in the database then cap it right here
+    if db_local['artists'].find_one({"artistId": artist_id}) is not None:
+        print("Artist {id} already in database".format(id=artist_id))
+        logging.error("Artist {id} already in database".format(id=artist_id))
+        return
+
     get_artist_name(artist_obj, artist_document_local, artist_document_atlas)
 
-    # discography = genius.artist_albums(artist_id)["albums"]
+    # discography = lyr.artist_albums(artist_id)["albums"]
     discography = []
     page = 1
     per_page = 50
     while True:
-        response = genius.artist_albums(artist_id, per_page=per_page, page=page)
+        response = lyr.artist_albums(artist_id, per_page=per_page, page=page)
         albums = response.get('albums', [])
         if not albums:
             break
@@ -219,8 +219,6 @@ def process_artist(genius, artist_name, db_local, db_atlas):
         print("No albums in discography for artist {id}".format(id=artist_id))
         logging.error("No albums in discography for artist {id}".format(id=artist_id))
         return None
-
-
 
     albums_documents_local = []
     albums_documents_atlas = []
@@ -234,7 +232,7 @@ def process_artist(genius, artist_name, db_local, db_atlas):
         print("  Processing " + album_obj['name'] + " album ")
         
         try:
-            album_doc_local, album_doc_atlas, unique_words_album = process_album(genius, album_obj, artist_id, db_local, db_atlas)
+            album_doc_local, album_doc_atlas, unique_words_album = process_album(lyr, album_obj, artist_id, db_local, db_atlas)
             if album_doc_local is None:
                 print("  " + album_obj['name'] + " album not processed ")
                 logging.error("  " + album_obj['name'] + " album not processed ")
@@ -250,7 +248,6 @@ def process_artist(genius, artist_name, db_local, db_atlas):
         except Exception as e:
             logging.error("  ERROR PROCESSING ALBUM: %s", e)
             print("  ERROR PROCESSING ALBUM:", e)
-
 
     get_num_songs_artist(albums_documents_local, artist_document_local, artist_document_atlas)
 
@@ -292,23 +289,58 @@ def process_artist(genius, artist_name, db_local, db_atlas):
         logging.error("ERROR INSERTING ARTIST: %s ", e)
         print("ERROR INSERTING ARTIST: %s ", e)
 
-
 def main():
     load_dotenv()
     client, client_local = initialize_mongo_clients()
     db_local = client_local['analyrics_local']
     db_atlas = client['analyrics']
-    genius = initialize_genius_client()
+    lyr = initialize_client()
     logging.basicConfig(filename='master_script.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
     
-    artist_names = [
-    "J. Cole"
-    ]
-    artist_names = set(artist_names)
+    artist_names = ["Playboi Carti"]
+
+    # artist_names = [
+    # "Taylor Swift",
+    # "Kanye West",
+    # "Ariana Grande",
+    # "Drake",
+    # "Ed Sheeran",
+    # "The Weeknd",
+    # "Justin Bieber",
+    # "Billie Eilish",
+    # "Post Malone",
+    # "Rihanna",
+    # "Beyoncé",
+    # "Katy Perry",
+    # "Lady Gaga",
+    # "Nicki Minaj",
+    # "Bruno Mars",
+    # "Adele",
+    # "Shawn Mendes",
+    # "Dua Lipa",
+    # "Lil Wayne",
+    # "Travis Scott",
+    # "Cardi B",
+    # "Lana Del Rey",
+    # "SZA",
+    # "Lorde",
+    # "Halsey",
+    # "Megan Thee Stallion",
+    # "Doja Cat",
+    # "Kendrick Lamar",
+    # "J. Cole",
+    # "Eminem",
+    # "Jay-Z",
+    # "50 Cent",
+    # "Nas",
+    # "Tupac Shakur",
+    # "The Notorious B.I.G.",
+    # "Snoop Dogg"
+    # ]
     for artist_name in artist_names:
         logging.info("Processing " + artist_name + " artist ")
         print("Processing " + artist_name + " artist ")
-        process_artist(genius, artist_name, db_local, db_atlas)
+        process_artist(lyr, artist_name, db_local, db_atlas)
         logging.info(artist_name + " artist processed ")
         print(artist_name + " artist processed ")
     

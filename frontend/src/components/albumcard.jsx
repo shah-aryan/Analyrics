@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const AlbumCard = ({ album }) => {
   const navigate = useNavigate();
-  const numCollaborations = Object.keys(album.collaborations).length + 1;
+  const numCollaborations = Object.keys(album.collaborations).length;
   const year = new Date(album.releaseDate).getFullYear();
   const nam = album.name;
   const id = album.albumId;

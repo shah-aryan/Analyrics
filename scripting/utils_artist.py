@@ -14,7 +14,7 @@ def get_artist_name(artist_obj: dict, local_artist_document: dict, atlas_artist_
     return artist_name
 
 def get_num_songs_artist(albums_documents: list, local_artist_document: dict, atlas_artist_document: dict) -> int:
-    num_songs = sum(len(album_document['songs']) for album_document in albums_documents)
+    num_songs = sum(album_document["numTracks"] for album_document in albums_documents)
     local_artist_document['numSongs'] = num_songs
     atlas_artist_document['numSongs'] = num_songs
     return num_songs

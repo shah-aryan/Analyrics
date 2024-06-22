@@ -19,9 +19,9 @@ def get_name_album(album_obj: Dict[str, Any], local_album_document: Dict[str, An
         "video", "edition", "mixes", "compilation", "exclusive", "mix", "remastered", 
         "reissue", "expanded", "digital booklet", "anniversary", "radio", "edit",  
         "unplugged", "acoustic", "instrumental", "karaoke", "demo", 
-        "b-sides", "soundtrack", "live recording", 
+        "b-sides", "soundtrack", "live recording", "tour"
         "studio", "mono", "stereo", "alternate", "bonus", "concert", 
-        "enhanced", "EP", "cappella", "special", 
+        "enhanced", "EP", "cappella", "special", "itunes", "amazon", "google",
         "podcast", "interview", "cover", "tribute", "bootleg", "draft"
     }
     name = album_obj["name"]

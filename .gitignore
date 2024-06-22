@@ -10,3 +10,4 @@ logs
 **/*.back.*
 scripting/api_key.py
 .env
+scripting/acquisition.py
