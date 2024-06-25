@@ -156,7 +156,7 @@ app.post("/lookup", async (req, res) => {
 
 
 
-MongoClient.connect(mongoDBURL, { useNewUrlParser: true, useUnifiedTopology: true })
+MongoClient.connect(mongoDBURL)
   .then(client => {
     db = client.db();
     console.log("Connected to MongoDB");
@@ -167,3 +167,4 @@ MongoClient.connect(mongoDBURL, { useNewUrlParser: true, useUnifiedTopology: tru
   .catch(error => {
     console.error("Error connecting to MongoDB", error);
   });
+
