@@ -1,3 +1,7 @@
-export const PORT = 5555;
+//load the environment variables
+import dotenv from 'dotenv';
+dotenv.config();
 
-export const mongoDBURL = 'mongodb://localhost:27017/analyrics';
+export const PORT = process.env.PORT;
+
+export const mongoDBURL = process.env.mongoDBURL;

@@ -160,6 +160,7 @@ MongoClient.connect(mongoDBURL, { useNewUrlParser: true, useUnifiedTopology: tru
   .then(client => {
     db = client.db();
     console.log("Connected to MongoDB");
+
     app.listen(PORT, () => {
       console.log(`Server listening on port ${PORT}`);
     });
