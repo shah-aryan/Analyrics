@@ -1,12 +1,17 @@
 import express from "express";
-import { MongoClient } from "mongodb";
+import mongoose from "mongoose";
 import { PORT, mongoDBURL } from "./config.js";
 import cors from "cors";
 
 const app = express();
 app.use(express.json());
 app.use(cors());
-let db;
+
+mongoose.connect(mongoDBURL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("Connected to MongoDB"))
+  .catch(error => console.error("Error connecting to MongoDB", error));
+
+const db = mongoose.connection;
 
 app.get("/", (req, res) => {
   console.log(req);
@@ -48,7 +53,6 @@ app.get("/search", async (req, res) => {
   }
 });
 
-
 app.get("/artists/:artistId", async (req, res) => {
   try {
     const artist = await db.collection("artists").findOne({ artistId: parseInt(req.params.artistId) });
@@ -85,7 +89,7 @@ app.get("/albums/:albumId", async (req, res) => {
       }
     }
     const artistName = (await db.collection("lookup").findOne({ artistId: album.artistId })).name;
-    const albumWithSongs = { ...album, artistName: artistName, songsObj: songs };;
+    const albumWithSongs = { ...album, artistName: artistName, songsObj: songs };
 
     return res.status(200).json(albumWithSongs);
   } catch (error) {
@@ -115,8 +119,6 @@ app.post("/lookup", async (req, res) => {
   }
 });
 
-
-
 app.get("/songs/:songId", async (req, res) => {
   try {
     const song = await db.collection("songs").findOne({ songId: parseInt(req.params.songId) });
@@ -129,41 +131,6 @@ app.get("/songs/:songId", async (req, res) => {
   }
 });
 
-app.post("/lookup", async (req, res) => {
-  try {
-    console.log(req.body);
-    const { ids } = req.body;
-    if (!Array.isArray(ids) || !ids.every(id => !isNaN(parseInt(id)))) {
-      return res.status(400).json({ message: "Please provide an array of valid numeric IDs" });
-    }
-
-    const artistNames = [];
-
-    for (const id of ids) {
-      const artist = await db.collection("lookup").findOne({ artistId: id });
-      if (artist) {
-        artistNames.push(artist.name);
-      }
-    }
-    
-    return res.status(200).json(artistNames);
-  } catch (error) {
-    return res.status(500).json({ message: error.message });
-  }
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
 });
-
-
-
-
-MongoClient.connect(mongoDBURL)
-  .then(client => {
-    db = client.db();
-    console.log("Connected to MongoDB");
-    app.listen(PORT, () => {
-      console.log(`Server listening on port ${PORT}`);
-    });
-  })
-  .catch(error => {
-    console.error("Error connecting to MongoDB", error);
-  });
-
