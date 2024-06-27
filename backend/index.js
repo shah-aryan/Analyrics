@@ -7,14 +7,16 @@ const app = express();
 app.use(express.json());
 // app.use(express.static(path.join(__dirname, 'client/build')));
 
-const corsOptions = {
-  origin: '*', // Allow all domains
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
-};
+// const corsOptions = {
+//   origin: '*', // Allow all domains
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   preflightContinue: false,
+//   optionsSuccessStatus: 204,
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+
+app.use(cors());
 
 mongoose.connect(mongoDBURL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connected to MongoDB"))
