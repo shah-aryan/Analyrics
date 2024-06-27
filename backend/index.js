@@ -5,6 +5,7 @@ import cors from "cors";
 
 const app = express();
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 const corsOptions = {
   origin: '*', // Allow all domains
@@ -137,6 +138,12 @@ app.get("/songs/:songId", async (req, res) => {
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
+});
+
+// The catch-all handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
 app.listen(PORT, () => {
