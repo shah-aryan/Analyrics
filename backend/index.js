@@ -29,6 +29,8 @@ app.get("/", (req, res) => {
   return res.status(200).send("Hello, world!");
 });
 
+app.get('/favicon.ico', (req, res) => res.status(204));
+
 app.get("/artists", async (req, res) => {
   try {
     const artists = await db.collection("artists").find().toArray();
