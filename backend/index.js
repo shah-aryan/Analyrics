@@ -5,7 +5,7 @@ import cors from "cors";
 
 const app = express();
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'client/build')));
+// app.use(express.static(path.join(__dirname, 'client/build')));
 
 const corsOptions = {
   origin: '*', // Allow all domains
