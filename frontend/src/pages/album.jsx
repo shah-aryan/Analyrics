@@ -24,6 +24,9 @@ import { FaBook } from "react-icons/fa";
 import { RiNumbersFill } from "react-icons/ri";
 import { FaRulerVertical } from "react-icons/fa";
 
+import dotenv from 'dotenv';
+const VITE_API_URL = import.meta.env.VITE_API_URL;
+
 const AlbumLayout = () => {
 
   function ScrollToBottom(songId, albumId) {
@@ -50,9 +53,6 @@ const AlbumLayout = () => {
   //get songId by getting all characters from the back until a '/'
   songId = parseInt(currentURL.slice(currentURL.lastIndexOf('/') + 1));
 
-  console.log("albumId: ", albumId);
-  console.log("songId: ", songId);
-
   if (isNaN(songId) || songId < 0) {
     songId = -1;
   }
@@ -67,7 +67,7 @@ const AlbumLayout = () => {
   useEffect(() => {
     const fetchAlbumData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5555/albums/${albumId}`);
+        const response = await axios.get(`${VITE_API_URL}albums/${albumId}`);
         setAlbumData(response.data);
       } catch (error) {
         console.error('Error fetching album data:', error);

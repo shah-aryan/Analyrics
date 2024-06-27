@@ -24,6 +24,9 @@ import { FaBook } from "react-icons/fa";
 import { RiNumbersFill } from "react-icons/ri";
 import { FaRulerVertical } from "react-icons/fa";
 
+import dotenv from 'dotenv';
+const VITE_API_URL = import.meta.env.VITE_API_URL;
+
 
 const Layout = () => {
   const { i } = useParams(); // Get the artist ID from the URL
@@ -36,7 +39,7 @@ const Layout = () => {
   useEffect(() => {
     const fetchArtistData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5555/artists/${i}`);
+        const response = await axios.get(`${VITE_API_URL}artists/${i}`);
         setArtistData(response.data);
       } catch (error) {
         console.error('Error fetching artist data:', error);

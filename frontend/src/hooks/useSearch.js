@@ -2,6 +2,9 @@
 import { useState, useEffect } from 'react';
 import debounce from 'lodash.debounce';
 import axios from 'axios';
+import dotenv from 'dotenv';
+const VITE_API_URL = import.meta.env.VITE_API_URL;
+
 
 const useSearch = () => {
   const [query, setQuery] = useState('');
@@ -15,7 +18,7 @@ const useSearch = () => {
 
     const fetchResults = async (searchQuery) => {
       try {
-        const response = await axios.get(`http://localhost:5555/search?search=${searchQuery}`);
+        const response = await axios.get(`${VITE_API_URL}search?search=${searchQuery}`);
         const { artists, albums, songs } = response.data;
 
         const sortedArtists = artists.sort((a, b) => {

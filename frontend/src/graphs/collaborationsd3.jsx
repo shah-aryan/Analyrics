@@ -2,6 +2,9 @@ import React, { useRef, useEffect, useState, useMemo } from 'react';
 import * as d3 from 'd3';
 import axios from 'axios';
 
+import dotenv from 'dotenv';
+const VITE_API_URL = import.meta.env.VITE_API_URL;
+
 const D3Chart = ({ artistName = "Error", numSongs = 1, collaborations = {} }) => {
   const [names, setNames] = useState(["name1", "name2", "name3", "name4", "name5", "name6", "name7", "name8", "name9", "name10"]);
   const hasFetchedData = useRef(false);
@@ -19,7 +22,7 @@ const D3Chart = ({ artistName = "Error", numSongs = 1, collaborations = {} }) =>
   const fetchData = () => {
     if (top10Collaborations.length >= 2 && !hasFetchedData.current) {
       const ids = top10Collaborations.map(collab => collab[0]);
-      axios.post('http://localhost:5555/lookup', { ids })
+      axios.post(`${VITE_API_URL}lookup`, { ids })
         .then(response => {
           if (response.status === 200) {
             setNames(response.data);
