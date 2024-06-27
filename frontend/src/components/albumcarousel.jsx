@@ -56,7 +56,7 @@ const Carousel = ({ albums }) => {
     <div className="relative w-full h-full">
       <div ref={carouselRef} className="carousel carousel-start space-x-4 bg-base-100 rounded-3xl h-full w-full overflow-x-auto scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-track-neutral-content scrollbar-thumb-slate-300" >
         {albums.map((album, index) => (
-          <div key={index} className="carousel-item flex items-center justify-center bg-base-200 rounded-3xl sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/4 outline outline-1 outline-base-300 overflow-y-hidden">
+          <div key={index} className="carousel-item flex items-center justify-center bg-base-200 rounded-3xl w-2/3 xs:w-3/4 sm:w-1/2 md:w-1/4 lg:w-1/5 xl:w-1/4 outline outline-1 outline-base-300 overflow-y-hidden">
             <AlbumCard album={album} />
           </div>
         ))}

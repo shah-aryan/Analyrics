@@ -13,11 +13,11 @@ def get_id_album(album_obj: Dict[str, Any], local_album_document: Dict[str, Any]
 
 def get_name_album(album_obj: Dict[str, Any], local_album_document: Dict[str, Any], atlas_album_document: Dict[str, Any]) -> str:
     words_to_remove = {
-        "edition", "exclusive", "(live)", "remix", "video", "version", "deluxe", 
-        "mix", "festival", "apple", "spotify", "live", "rerelease", "bonus", 
+        "edition", "exclusive", "(live)", "remix", "video", "version", 
+        "mix", "festival", "apple", "spotify", "live", "rerelease", 
         "collection", "best of", "anthology", "hits", "greatest hits", "remixes", 
         "video", "edition", "mixes", "compilation", "exclusive", "mix", "remastered", 
-        "reissue", "expanded", "digital booklet", "anniversary", "radio", "edit",  
+        "reissue", "digital booklet", "anniversary", "radio", "edit",  
         "unplugged", "acoustic", "instrumental", "karaoke", "demo", 
         "b-sides", "soundtrack", "live recording", "tour"
         "studio", "mono", "stereo", "alternate", "bonus", "concert", 

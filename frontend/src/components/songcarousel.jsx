@@ -76,7 +76,7 @@ const SongCarousel = ({ songs, targetSongId }) => {
         {songs.map((song, index) => (
           <div 
             key={index} 
-            className={`carousel-item flex items-center justify-center bg-base-200 rounded-3xl sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/4 outline outline-1 ${song.songId === targetSongId ? 'outline-accent' : 'outline-base-300'} overflow-y-hidden mr-4`}
+            className={`carousel-item flex items-center justify-center bg-base-200 rounded-3xl w-2/3 xs:w-3/4 sm:w-1/2 md:w-1/4 lg:w-1/5 xl:w-1/4 outline outline-1 ${song.songId === targetSongId ? 'outline-accent' : 'outline-base-300'} overflow-y-hidden mr-4`}
           >
             <SongCard song={song} isTarget={song.songId === targetSongId} />
           </div>

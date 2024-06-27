@@ -135,27 +135,33 @@ const AlbumLayout = () => {
           <div className="order-2 row-span-4 col-span-24 md:col-span-12 lg:col-span-8 xl:col-span-6 xl:row-span-6">
             <GraphHolder title="Album Emotions" subtitle="Emotions" icon={<GoHeartFill />} chart={<SentimentsBubble values={sentiments} />} />
           </div>
-          <div className="order-3 row-span-4 col-span-24 md:col-span-12 lg:col-span-10 xl:col-span-6 xl:row-span-6">
+          <div className="order-3 row-span-4 col-span-24 md:col-span-12 lg:col-span-8 xl:col-span-6 xl:row-span-6">
             <GraphHolder title="Top Words in Album" subtitle="Word Cloud" icon={<FaCloud />} chart={<WordCloud words_obj={words_obj} />} />
           </div>
           <div className="order-4 row-span-4 col-span-24 md:col-span-12 lg:col-span-8 xl:col-span-6 xl:row-span-6 sm:h-auto">
             <GraphHolder title="Hover To See Collaborations" subtitle="Interactive Collaborations Visualizer" icon={<FaPeopleGroup />}              chart={<D3Chart artistName={name} numSongs={numberOfSongs} collaborations={albumData.collaborations} />}/>
           </div>
-          <div className="order-5 row-span-4 col-span-24 md:col-span-12 lg:col-span-6 xl:col-span-4 xl:row-span-6">
+          <div className="order-5 row-span-4 col-span-24 md:col-span-12 lg:col-span-8 xl:col-span-4 xl:row-span-6">
             <GraphHolder title="Album Sentiments" subtitle="Sentiments" icon={<FaSmile />} chart={<PieChart sentiments={sentiments} />} />
           </div>
-          <div className="col-span-12 order-6 xl:order-7 row-span-4 md:col-span-6 lg:col-span-4 xl:row-span-6 xl:col-span-3">
+          <div className="col-span-24 order-6 xl:order-7 row-span-4 md:col-span-12 lg:col-span-8 xl:col-span-6 xl:row-span-6">
+            <div className="grid grid-cols-2 grid-flow-row gap-4 w-full h-full">
+            <SmallCard number={numberOfSongs} label="Songs" icon={<FaMusic />} showPlus={false} />
+            <SmallCard number={releaseDate} label="Release Year" icon={<BiSolidAlbum />} showPlus={false} />
+            <SmallCard number={wordsPerSong} label="Words/Song" icon={<RiNumbersFill />} showPlus={false} />
+            <SmallCard number={averageWordLength} label="Avg Word Size" icon={<FaRulerVertical />} showPlus={false} />
+            </div>
+          </div>
+          {/* <div className="col-span-12 order-6 xl:order-7 row-span-4 md:col-span-6 lg:col-span-4 xl:row-span-6 xl:col-span-3">
             <div className="grid grid-cols-1 grid-flow-row gap-4 w-full h-full">
-              <SmallCard number={numberOfSongs} label="Songs" icon={<FaMusic />} showPlus={false} />
-              <SmallCard number={releaseDate} label="Release Year" icon={<BiSolidAlbum />} showPlus={false} />
+
             </div>
           </div>
           <div className="col-span-12 order-7 xl:order-8 row-span-4 md:col-span-6 lg:col-span-4 xl:row-span-6 xl:col-span-3">
           <div className="grid grid-cols-1 grid-flow-row gap-4 w-full h-full">
-            <SmallCard number={wordsPerSong} label="Words/Song" icon={<RiNumbersFill />} showPlus={false} />
-            <SmallCard number={averageWordLength} label="Avg Word Size" icon={<FaRulerVertical />} showPlus={false} />
+
           </div>
-          </div>
+          </div> */}
           <div className="col-span-24 xl:order-6 order-8 row-span-4 md:col-span-24 lg:col-span-24 xl:col-span-14 xl:row-span-6">
             <SongCarousel songs={albumData.songsObj} targetSongId={songId}/>
           </div>
