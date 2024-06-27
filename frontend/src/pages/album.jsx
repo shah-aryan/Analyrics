@@ -139,7 +139,7 @@ const AlbumLayout = () => {
             <GraphHolder title="Top Words in Album" subtitle="Word Cloud" icon={<FaCloud />} chart={<WordCloud words_obj={words_obj} />} />
           </div>
           <div className="order-4 row-span-4 col-span-24 md:col-span-12 lg:col-span-8 xl:col-span-6 xl:row-span-6 sm:h-auto">
-            <GraphHolder title="Hover To See Collaborations" subtitle="Interactive Collaborations Visualizer" icon={<FaPeopleGroup />}              chart={<D3Chart artistName={name} numSongs={numberOfSongs} collaborations={albumData.collaborations} />}/>
+            <GraphHolder title="Hover To See Top Collaborations" subtitle="Interactive Collaborations Visualizer" icon={<FaPeopleGroup />}              chart={<D3Chart artistName={name} numSongs={numberOfSongs} collaborations={albumData.collaborations} />}/>
           </div>
           <div className="order-5 row-span-4 col-span-24 md:col-span-12 lg:col-span-8 xl:col-span-4 xl:row-span-6">
             <GraphHolder title="Album Sentiments" subtitle="Sentiments" icon={<FaSmile />} chart={<PieChart sentiments={sentiments} />} />

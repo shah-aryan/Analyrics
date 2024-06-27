@@ -112,7 +112,7 @@ const Layout = () => {
             <GraphHolder title="Artist Emotions" subtitle="Emotions" icon={<GoHeartFill />} chart={<SentimentsBubble values={sentiments} />} />
           </div>
           <div className="order-3 row-span-4 col-span-24 md:col-span-12 lg:col-span-8 xl:col-span-6 xl:row-span-6 sm:h-auto">
-            <GraphHolder title="Hover To See Collaborations" subtitle="Interactive Collaborations Visualizer" icon={<FaPeopleGroup />} chart={<D3Chart artistName={name} numSongs={numberOfSongs} collaborations={artistData.collaborations} />} />
+            <GraphHolder title="Hover/Tap To See Top Collaborations" subtitle="Interactive Collaborations Visualizer" icon={<FaPeopleGroup />} chart={<D3Chart artistName={name} numSongs={numberOfSongs} collaborations={artistData.collaborations} />} />
           </div>
           <div className="order-4 row-span-4 col-span-24 md:col-span-12 lg:col-span-10 xl:col-span-6 xl:row-span-6">
             <GraphHolder title="Top Words in Discography" subtitle="Word Cloud" icon={<FaCloud />} chart={<WordCloud words_obj={words_obj} />} />
