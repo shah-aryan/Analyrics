@@ -30,6 +30,8 @@ app.get("/", (req, res) => {
 });
 
 app.get('/favicon.ico', (req, res) => res.status(204));
+app.get('/favicon.ico', (req, res) => res.status(204).end());
+app.get('/favicon.png', (req, res) => res.status(204));
 
 app.get("/artists", async (req, res) => {
   try {
