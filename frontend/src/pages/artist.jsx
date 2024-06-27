@@ -97,7 +97,7 @@ const Layout = () => {
 
   return (
     <>
-      <NavBar title={name} className="" />
+      <NavBar title={name + " (Artist)"} className="" />
       <div className="flex flex-col sm:w-full xl:h-[calc(100vh-7rem)] sm:h-auto md:h-auto lg:h-full xl:min-h-xlminh xl:max-h-xlmaxh">
         <div className="order-1 grid grid-cols-24 grid-rows-12 gap-4 w-full h-full p-8 pt-4">
           <div className="col-span-24 row-span-4 md:col-span-12 lg:col-span-8 xl:col-span-6 xl:row-span-6">
