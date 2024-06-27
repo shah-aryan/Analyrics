@@ -5,13 +5,14 @@ import Layout from './pages/artist.jsx';
 import AlbumLayout from './pages/album.jsx';
 import SongLayout from './pages/song.jsx';
 import NotFound from './pages/404.jsx';
+import useZoomOutOnXs from './hooks/zoom.js';
 
 
 const AppContent = () => {
   const location = useLocation();
   
   return (
-    <div className="min-h-screen bg-base-100">
+    <div className="h-auto bg-base-100 ">
       <Routes>
         <Route path="/" element={<SearchPage />} />
         <Route path="/artist/:i" element={<Layout />} />
@@ -23,6 +24,8 @@ const AppContent = () => {
 };
 
 const App = () => {
+  useZoomOutOnXs();
+
   return (
     <Router>
       <AppContent />

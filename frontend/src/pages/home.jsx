@@ -104,7 +104,7 @@ const SearchPage = () => {
 
   return (
     <div ref={vantaRef} className="min-h-screen font-bold text-white flex flex-col items-center justify-center bg-base-100 p-8">
-      <h1 className="text-10xl">Analyrics</h1>
+      <h1 className="md:text-10xl sm:text-8xl text-6xl">Analyrics</h1>
       <div className="form-control w-full max-w-md text-white text-center relative">
         <input
           type="text"
