@@ -9,11 +9,10 @@ const SongCarousel = ({ songs, targetSongId }) => {
 
   // Sort songs object by numInAlbum
   songs.sort((a, b) => (a.numInAlbum && b.numInAlbum ? a.numInAlbum - b.numInAlbum : a.numInAlbum ? -1 : b.numInAlbum ? 1 : 0));
-
   const handlePrev = () => {
     setCurrentIndex(prevIndex => Math.max(prevIndex - 1, 0));
     if (carouselRef.current) {
-      const scrollAmount = carouselRef.current.children[0].offsetWidth + 16;
+      const scrollAmount = carouselRef.current.children[1].offsetWidth + 16;
       carouselRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
     }
   };
@@ -21,7 +20,7 @@ const SongCarousel = ({ songs, targetSongId }) => {
   const handleNext = () => {
     setCurrentIndex(prevIndex => Math.min(prevIndex + 1, songs.length - 1));
     if (carouselRef.current) {
-      const scrollAmount = carouselRef.current.children[0].offsetWidth + 16;
+      const scrollAmount = carouselRef.current.children[1].offsetWidth + 16;
       carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
@@ -63,7 +62,7 @@ const SongCarousel = ({ songs, targetSongId }) => {
           targetIndex = targetIndex - 1;
         }
         setCurrentIndex(targetIndex);
-        const scrollAmount = carouselRef.current.children[0].offsetWidth + 16;
+        const scrollAmount = carouselRef.current.children[1].offsetWidth + 16;
         carouselRef.current.scrollTo({ left: targetIndex * scrollAmount, behavior: 'smooth' });
       }
     }
