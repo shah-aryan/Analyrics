@@ -17,7 +17,7 @@ const AboutMeModal = ({ isOpen, onClose }) => {
           For those who would like their music featured on this website, please contact me at <a href="mailto:analyrics.contact@gmail.com" className="text-accent">analyrics.contact@gmail.com</a>
         </p>
         <p className="pt-4 font-light">
-          If you would like to support this project, its growth, and more like it, please buy me a coffee at <a href="https://buymeacoffee.com/shahary" className="text-accent" target="_blank" rel="noopener noreferrer">buymeacoffee.com/shahary</a>
+          I maintain a large database of over 1M songs, artists, and albums for Analyrics. If you would like to support this project and keep it running and growing, please buy me a coffee at <a href="https://buymeacoffee.com/shahary" className="text-accent" target="_blank" rel="noopener noreferrer">buymeacoffee.com/shahary</a>
         </p>
 
         <div className="modal-action">
