@@ -2,11 +2,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useSearch from '../hooks/useSearch';
+import CircleButton from '../components/circlebutton'; 
+import AboutMeModal from '../components/aboutme'; 
 
 const SearchPage = () => {
   const { query, setQuery, results } = useSearch();
   const [isFocused, setIsFocused] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
   const vantaRef = useRef(null);
   const vantaEffect = useRef(null);
@@ -102,6 +105,14 @@ const SearchPage = () => {
     navigate(`/${type}/${id}`);
   };
 
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div ref={vantaRef} className="min-h-screen font-bold text-white flex flex-col items-center justify-center bg-base-100 p-8">
       <h1 className="md:text-10xl sm:text-8xl text-6xl">Analyrics</h1>
@@ -150,7 +161,13 @@ const SearchPage = () => {
           </div>
         )}
       </div>
+      <div className="fixed bottom-8 right-8">
+        <CircleButton onClick={handleOpenModal} />
+      </div>
+      <AboutMeModal isOpen={isModalOpen} onClose={handleCloseModal} />
     </div>
+
+
   );
 }
 
