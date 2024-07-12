@@ -13,10 +13,13 @@ async function startServer() {
     await mongoose.connect(mongoDBURL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 30000, // Increase the server selection timeout
-      socketTimeoutMS: 45000, // Increase the socket timeout
+      serverSelectionTimeoutMS: 30000, 
+      socketTimeoutMS: 45000, 
     });
     console.log("Connected to MongoDB");
+
+    //log all server details
+    // console.log('Server details:', mongoose.connection.getClient());
 
     const db = mongoose.connection;
 

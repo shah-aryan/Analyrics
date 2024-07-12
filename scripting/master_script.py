@@ -11,6 +11,7 @@ from utils_album import *
 from utils_song import *
 from utils_mongo import *
 from utils_documents import *
+from artists_list import artist_names
 
 # add better handling for duplicate keys
 # make sure an artist can't collaborate with themselves
@@ -297,47 +298,16 @@ def main():
     lyr = initialize_client()
     logging.basicConfig(filename='master_script.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
     
-    artist_names = ["Playboi Carti"]
+    #concatonate names[1] to names[4] into one list called names_for_now
+    names_for_now = []
+    for names in artist_names[1:]:
+        names_for_now.extend(names)
 
-    # artist_names = [
-    # "Taylor Swift",
-    # "Kanye West",
-    # "Ariana Grande",
-    # "Drake",
-    # "Ed Sheeran",
-    # "The Weeknd",
-    # "Justin Bieber",
-    # "Billie Eilish",
-    # "Post Malone",
-    # "Rihanna",
-    # "Beyoncé",
-    # "Katy Perry",
-    # "Lady Gaga",
-    # "Nicki Minaj",
-    # "Bruno Mars",
-    # "Adele",
-    # "Shawn Mendes",
-    # "Dua Lipa",
-    # "Lil Wayne",
-    # "Travis Scott",
-    # "Cardi B",
-    # "Lana Del Rey",
-    # "SZA",
-    # "Lorde",
-    # "Halsey",
-    # "Megan Thee Stallion",
-    # "Doja Cat",
-    # "Kendrick Lamar",
-    # "J. Cole",
-    # "Eminem",
-    # "Jay-Z",
-    # "50 Cent",
-    # "Nas",
-    # "Tupac Shakur",
-    # "The Notorious B.I.G.",
-    # "Snoop Dogg"
-    # ]
-    for artist_name in artist_names:
+
+    logging.critical("STARTING SCRIPT")
+    logging.info("Processing artists: " + str(names_for_now))
+
+    for artist_name in names_for_now:
         logging.info("Processing " + artist_name + " artist ")
         print("Processing " + artist_name + " artist ")
         process_artist(lyr, artist_name, db_local, db_atlas)
