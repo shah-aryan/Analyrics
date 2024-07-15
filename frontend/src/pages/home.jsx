@@ -17,9 +17,16 @@ const SearchPage = () => {
   const navigate = useNavigate();
   const vantaRef = useRef(null);
   const vantaEffect = useRef(null);
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 500);
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
+
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 500);
+    };
+
+    window.addEventListener('resize', handleResize);
 
     const loadScript = (src) => {
       return new Promise((resolve, reject) => {
@@ -72,6 +79,7 @@ const SearchPage = () => {
       const vantaScript = document.querySelector('script[src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.21/vanta.topology.min.js"]');
       if (p5Script) document.body.removeChild(p5Script);
       if (vantaScript) document.body.removeChild(vantaScript);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -115,34 +123,9 @@ const SearchPage = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setIsModalOpen(true);
   };
-  
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-  };
-
-  const testData = {
-    songs: [
-      { id: 1, name: 'Song A' },
-      { id: 2, name: 'Song B' },
-      { id: 3, name: 'Song C' },
-      { id: 4, name: 'Song D' },
-      { id: 5, name: 'Song E' }
-    ],
-    albums: [
-      { id: 1, name: 'Album A' },
-      { id: 2, name: 'Album B' },
-      { id: 3, name: 'Album C' },
-      { id: 4, name: 'Album D' },
-      { id: 5, name: 'Album E' }
-    ],
-    artists: [
-      { id: 1, name: 'Artist A' },
-      { id: 2, name: 'Artist B' },
-      { id: 3, name: 'Artist C' },
-      { id: 4, name: 'Artist D' },
-      { id: 5, name: 'Artist E' }
-    ]
   };
 
   return (
@@ -195,10 +178,8 @@ const SearchPage = () => {
                 </ul>
               </div>
             )}
-
           </div>
-
-          <div className="absolute bottom-8 font-medium flex items-center justify-center space-x-2">
+          <div className={`absolute ${isSmallScreen ? 'bottom-24' : 'bottom-16'} font-medium flex items-center justify-center space-x-2`}>
             <div className="animate-bounce">
               <svg className="w-4 h-4 text-info mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
@@ -211,28 +192,16 @@ const SearchPage = () => {
               </svg>
             </div>
           </div>
-
-
-
-
-
-        <div className="absolute bottom-8 right-8">
-          <CircleButton onClick={handleOpenModal} />
+          <div className={`absolute ${isSmallScreen ? 'bottom-8' : 'bottom-8'} right-8`}>
+            <CircleButton onClick={handleOpenModal} />
+          </div>
         </div>
-
-          
-        </div>
-
       </div>
-
       <div className="w-full flex justify-center items-center mt-24 mb-8" data-aos="fade-up">
         <h1 className="text-5xl font-bold text-center">
           The <span className="text-accent">Analyrics</span> Leaderboards
         </h1>
       </div>
-
-
-
       <div className="container mx-auto p-4 w-full">
         <Routes>
           <Route path="/" element={
@@ -289,7 +258,6 @@ const SearchPage = () => {
           <Route path="/artist/:id" element={<div>Artist ID: {window.location.pathname.split('/').pop()}</div>} />
         </Routes>
       </div>
-      
     </div>
   );
 };
