@@ -219,6 +219,15 @@ const D3Chart = ({ artistName = "Error", numSongs = 1, collaborations = {} }) =>
     };
   }, [names, data]);
 
+  if (tooSmall) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full text-center">
+        <h1 className="text-lg">Not enough data to display</h1>
+        <div className="text-xs text-gray-500">Too few collaborations detected</div>
+        <div className="h-24"></div>
+      </div>
+    );
+  }
   return <svg ref={chartRef}></svg>;
 };
 

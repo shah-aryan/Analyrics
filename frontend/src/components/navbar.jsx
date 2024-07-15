@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { HiHome } from 'react-icons/hi';
 import useSearch from '../hooks/useSearch';
+import { set } from 'mongoose';
 
 const NavBar = ({ title }) => {
   const { query, setQuery, results } = useSearch();
@@ -42,7 +43,10 @@ const NavBar = ({ title }) => {
   };
 
   const handleItemClick = (type, id) => {
-    navigate(`/${type}/${id}`);
+    //navigate to loading page for a second and then go there
+    navigate('/loading');
+    setTimeout(() => navigate(`/${type}/${id}`), 50);
+    // navigate(`/${type}/${id}`);
   };
 
   return (
@@ -77,7 +81,7 @@ const NavBar = ({ title }) => {
                       onMouseDown={() => handleItemClick('artist', artist.artistId)}
                       className={`cursor-pointer hover:bg-gray-700 p-2 rounded-md ${highlightedIndex === index ? 'bg-gray-700' : ''}`}
                     >
-                      {artist.name}
+                      {"Artist: " + artist.name}
                     </li>
                   ))}
                   {results.artists.length < 20 && results.albums.slice(0, 20 - results.artists.length).map((album, index) => (
@@ -86,7 +90,7 @@ const NavBar = ({ title }) => {
                       onMouseDown={() => handleItemClick('album', album.albumId)}
                       className={`cursor-pointer hover:bg-gray-700 p-2 rounded-md ${highlightedIndex === index + results.artists.length ? 'bg-gray-700' : ''}`}
                     >
-                      {album.name}
+                      {"Album: " + album.name}
                     </li>
                   ))}
                   {results.artists.length + results.albums.length < 20 && results.songs.slice(0, 20 - results.artists.length - results.albums.length).map((song, index) => (
@@ -95,7 +99,7 @@ const NavBar = ({ title }) => {
                       onMouseDown={() => handleItemClick('album', `${song.albumId[0]}/${song.songId}`)}
                       className={`cursor-pointer hover:bg-gray-700 p-2 rounded-md ${highlightedIndex === index + results.artists.length + results.albums.length ? 'bg-gray-700' : ''}`}
                     >
-                      {song.name}
+                      {"Song: " + song.name}
                     </li>
                   ))}
                 </ul>

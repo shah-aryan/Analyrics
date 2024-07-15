@@ -1,3 +1,5 @@
 if an album has 0 songs remove it and remove it from the artists albums as well
-make no collaborations show up better
-add artist or album or whatever in search results
+
+
+Done: when switching from artist to artist the collaborations don't refresh
+Done: make no collaborations show up better

@@ -1,9 +1,13 @@
-// src/pages/SearchPage.jsx
 import React, { useEffect, useRef, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import useSearch from '../hooks/useSearch';
-import CircleButton from '../components/circlebutton'; 
-import AboutMeModal from '../components/aboutme'; 
+import CircleButton from '../components/circlebutton';
+import AboutMeModal from '../components/aboutme';
+import TopFiveCard from '../components/top5card';
+import 'aos/dist/aos.css';
+import AOS from 'aos';
+import rankings from '../cache/rankings.json';
 
 const SearchPage = () => {
   const { query, setQuery, results } = useSearch();
@@ -15,6 +19,8 @@ const SearchPage = () => {
   const vantaEffect = useRef(null);
 
   useEffect(() => {
+    AOS.init({ duration: 1000 });
+
     const loadScript = (src) => {
       return new Promise((resolve, reject) => {
         const script = document.createElement('script');
@@ -106,69 +112,186 @@ const SearchPage = () => {
   };
 
   const handleOpenModal = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     setIsModalOpen(true);
   };
+  
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
 
+  const testData = {
+    songs: [
+      { id: 1, name: 'Song A' },
+      { id: 2, name: 'Song B' },
+      { id: 3, name: 'Song C' },
+      { id: 4, name: 'Song D' },
+      { id: 5, name: 'Song E' }
+    ],
+    albums: [
+      { id: 1, name: 'Album A' },
+      { id: 2, name: 'Album B' },
+      { id: 3, name: 'Album C' },
+      { id: 4, name: 'Album D' },
+      { id: 5, name: 'Album E' }
+    ],
+    artists: [
+      { id: 1, name: 'Artist A' },
+      { id: 2, name: 'Artist B' },
+      { id: 3, name: 'Artist C' },
+      { id: 4, name: 'Artist D' },
+      { id: 5, name: 'Artist E' }
+    ]
+  };
+
   return (
-    <div ref={vantaRef} className="min-h-screen font-bold text-white flex flex-col items-center justify-center bg-base-100 p-8">
-      <h1 className="md:text-10xl sm:text-8xl text-6xl">Analyrics</h1>
-      <div className="form-control w-full max-w-md text-white text-center relative">
-        <input
-          type="text"
-          placeholder="Search for artists, albums, or songs..."
-          className="input input-bordered w-full rounded-3xl opacity-75 text-white"
-          value={query}
-          onChange={handleSearch}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setTimeout(() => setIsFocused(false), 100)} // Delay to allow click event
-          onKeyDown={handleKeyDown}
-        />
-        {isFocused && totalResults() > 0 && (
-          <div className="absolute text-left top-full left-0 right-0 bg-black w-full rounded-3xl p-4 text-white opacity-50 font-normal max-h-80 overflow-auto">
-            <ul>
-              {results.artists.slice(0, 20).map((artist, index) => (
-                <li
-                  key={artist.artistId}
-                  onMouseDown={() => handleItemClick('artist', artist.artistId)}
-                  className={`cursor-pointer hover:bg-gray-700 p-2 rounded-md ${highlightedIndex === index ? 'bg-gray-700' : ''}`}
-                >
-                  {artist.name}
-                </li>
-              ))}
-              {results.artists.length < 20 && results.albums.slice(0, 20 - results.artists.length).map((album, index) => (
-                <li
-                  key={album.albumId}
-                  onMouseDown={() => handleItemClick('album', album.albumId)}
-                  className={`cursor-pointer hover:bg-gray-700 p-2 rounded-md ${highlightedIndex === index + results.artists.length ? 'bg-gray-700' : ''}`}
-                >
-                  {album.name}
-                </li>
-              ))}
-              {results.artists.length + results.albums.length < 20 && results.songs.slice(0, 20 - results.artists.length - results.albums.length).map((song, index) => (
-                <li
-                  key={song.songId}
-                  onMouseDown={() => handleItemClick('album', `${song.albumId[0]}/${song.songId}`)}
-                  className={`cursor-pointer hover:bg-gray-700 p-2 rounded-md ${highlightedIndex === index + results.artists.length + results.albums.length ? 'bg-gray-700' : ''}`}
-                >
-                  {song.name}
-                </li>
-              ))}
-            </ul>
+    <div className="h-auto flex flex-col">
+      <div className='h-screen'>
+        <div ref={vantaRef} className="h-full font-bold text-white flex flex-col items-center justify-center bg-base-100 p-8" data-aos="fade-up">
+          <AboutMeModal isOpen={isModalOpen} onClose={handleCloseModal} />
+          <h1 className="md:text-10xl sm:text-8xl text-6xl">Analyrics</h1>
+          <div className="form-control w-full max-w-md text-white text-center relative mb-16">
+            <input
+              type="text"
+              placeholder="Search for artists, albums, or songs..."
+              className="input input-bordered w-full rounded-3xl opacity-75 text-white"
+              value={query}
+              onChange={handleSearch}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setTimeout(() => setIsFocused(false), 100)} // Delay to allow click event
+              onKeyDown={handleKeyDown}
+            />
+            {isFocused && totalResults() > 0 && (
+              <div className="absolute text-left top-full left-0 right-0 bg-black w-full rounded-3xl p-4 text-white opacity-50 font-normal max-h-80 overflow-auto">
+                <ul>
+                  {results.artists.slice(0, 20).map((artist, index) => (
+                    <li
+                      key={artist.artistId}
+                      onMouseDown={() => handleItemClick('artist', artist.artistId)}
+                      className={`cursor-pointer hover:bg-gray-700 p-2 rounded-md ${highlightedIndex === index ? 'bg-gray-700' : ''}`}
+                    >
+                      {"Artist: " + artist.name}
+                    </li>
+                  ))}
+                  {results.artists.length < 20 && results.albums.slice(0, 20 - results.artists.length).map((album, index) => (
+                    <li
+                      key={album.albumId}
+                      onMouseDown={() => handleItemClick('album', album.albumId)}
+                      className={`cursor-pointer hover:bg-gray-700 p-2 rounded-md ${highlightedIndex === index + results.artists.length ? 'bg-gray-700' : ''}`}
+                    >
+                      {"Album: " + album.name}
+                    </li>
+                  ))}
+                  {results.artists.length + results.albums.length < 20 && results.songs.slice(0, 20 - results.artists.length - results.albums.length).map((song, index) => (
+                    <li
+                      key={song.songId}
+                      onMouseDown={() => handleItemClick('album', `${song.albumId[0]}/${song.songId}`)}
+                      className={`cursor-pointer hover:bg-gray-700 p-2 rounded-md ${highlightedIndex === index + results.artists.length + results.albums.length ? 'bg-gray-700' : ''}`}
+                    >
+                      {"Song: " + song.name}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
           </div>
-        )}
+
+          <div className="absolute bottom-8 font-medium flex items-center justify-center space-x-2">
+            <div className="animate-bounce">
+              <svg className="w-4 h-4 text-info mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </div>
+            <p className="text-info tracking-wide text-sm font-bold">Scroll down to see the leaderboards</p>
+            <div className="animate-bounce">
+              <svg className="w-4 h-4 text-info mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </div>
+          </div>
+
+
+
+
+
+        <div className="absolute bottom-8 right-8">
+          <CircleButton onClick={handleOpenModal} />
+        </div>
+
+          
+        </div>
+
       </div>
-      <div className="fixed bottom-8 right-8">
-        <CircleButton onClick={handleOpenModal} />
+
+      <div className="w-full flex justify-center items-center mt-24 mb-8" data-aos="fade-up">
+        <h1 className="text-5xl font-bold text-center">
+          The <span className="text-accent">Analyrics</span> Leaderboards
+        </h1>
       </div>
-      <AboutMeModal isOpen={isModalOpen} onClose={handleCloseModal} />
+
+
+
+      <div className="container mx-auto p-4 w-full">
+        <Routes>
+          <Route path="/" element={
+            <div className="flex flex-wrap w-full items-center justify-center">
+              <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
+                <TopFiveCard items={rankings.largest_vocabulary} type="artist" title="Largest Vocabulary" label=" words"/>
+              </div>
+              <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
+                <TopFiveCard items={rankings.most_collaborative} type="artist" title="Most Collaborative" label=" collabs"/>
+              </div>
+              <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
+                <TopFiveCard items={rankings.highest_reading_level} type="artist" title="Highest Reading Level" />
+              </div>
+              <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
+                <TopFiveCard items={rankings.most_repetitive} type="artist" title="Most Repetitive" />
+              </div>
+              <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
+                <TopFiveCard items={rankings.longest_songs} type="artist" title="Longest Songs" label=" words"/>
+              </div>
+              <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
+                <TopFiveCard items={rankings.most_positive_lyrics} type="artist" title="Most Positive Lyrics" label=" %"  />
+              </div>
+              <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
+                <TopFiveCard items={rankings.most_negative_lyrics} type="artist" title="Most Negative Lyrics" label=" %" />
+              </div>
+              <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
+                <TopFiveCard items={rankings.most_trusting_lyrics} type="artist" title="Most Trusting Lyrics" label=" %"/>
+              </div>
+              <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
+                <TopFiveCard items={rankings.most_fearful_lyrics} type="artist" title="Most Fearful Lyrics" label=" %"/>
+              </div>
+              <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
+                <TopFiveCard items={rankings.most_surprise_in_lyrics} type="artist" title="Most Surprise in Lyrics" label=" %"/>
+              </div>
+              <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
+                <TopFiveCard items={rankings.most_joyous_lyrics} type="artist" title="Most Joyous Lyrics" label=" %"/>
+              </div>
+              <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
+                <TopFiveCard items={rankings.most_anticipation_in_lyrics} type="artist" title="Most Anticipation in Lyrics" label=" %"/>
+              </div>
+              <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
+                <TopFiveCard items={rankings.most_anger_in_lyrics} type="artist" title="Most Anger in Lyrics" label=" %"/>
+              </div>
+              <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
+                <TopFiveCard items={rankings.most_sad_lyrics} type="artist" title="Most Sad Lyrics" label=" %"/>
+              </div>
+              <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
+                <TopFiveCard items={rankings.most_disgust_in_lyrics} type="artist" title="Most Disgust in Lyrics" label=" %"/>
+              </div>
+            </div>
+          } />
+          <Route path="/song/:id" element={<div>Song ID: {window.location.pathname.split('/').pop()}</div>} />
+          <Route path="/album/:id" element={<div>Album ID: {window.location.pathname.split('/').pop()}</div>} />
+          <Route path="/artist/:id" element={<div>Artist ID: {window.location.pathname.split('/').pop()}</div>} />
+        </Routes>
+      </div>
+      
     </div>
-
-
   );
-}
+};
 
 export default SearchPage;

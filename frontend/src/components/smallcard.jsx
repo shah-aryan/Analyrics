@@ -30,8 +30,8 @@ const formatNumber = (num) => {
 
 const SmallCard = ({ number, label, icon, showPlus = true }) => {
   return (
-    <div className="relative bg-base-200 flex flex-col items-center p-2 rounded-3xl outline outline-1 outline-base-300 hover:bg-opacity-80 transition duration-300 h-full min-h-48">
-      <div className="absolute inset-0 opacity-0 hover:opacity-30 bg-accent bg-opacity-20 transition duration-300 blur-lg rounded-3xl"></div>
+    <div className="relative bg-base-200 flex flex-col items-center p-2 rounded-3xl outline outline-1 outline-base-300 h-full min-h-48">
+      <div className="absolute inset-0 opacity-0 rounded-3xl"></div>
       <div className="flex flex-col justify-between items-center h-full w-full">
         <div className="flex-grow"></div>
         <div className="flex items-center text-5xl font-bold mb-1">

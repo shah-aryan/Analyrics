@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaMusic } from "react-icons/fa6";
 
+
 const SongCard = ({ song, isTarget }) => {
 
   const year = new Date(song.releaseDate).getFullYear();
@@ -44,7 +45,7 @@ const SongCard = ({ song, isTarget }) => {
       <div className="flex flex-col items-center text-center text-l text-info pt-4 h-24" style={{ minHeight: '4em', justifyContent: 'center' }}>
         <div className="flex items-center text-accent">
           <FaMusic />
-          <span className="ml-2 text-info">Song {song.numInAlbum}</span>
+          <span className="ml-2 text-info">Song</span>
         </div>
         <div className="text-xl mt-2">
           <span
