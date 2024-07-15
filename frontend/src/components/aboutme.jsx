@@ -14,7 +14,7 @@ const AboutMeModal = ({ isOpen, onClose }) => {
           I am currently seeking a software engineering internship for Summer 2025, and I would love to connect with you! Feel free to reach out to me at <a href="mailto:shahary@umich.edu" className="text-accent">shahary@umich.edu</a>.
         </p>
         <p className="py-4 font-light">
-          For those who would like their music featured on this website, please contact me at <a href="mailto:analyrics.contact@gmail.com" className="text-accent">analyrics.contact@gmail.com</a>
+          If you have recommendations or would like your music featured, please contact me at <a href="mailto:analyrics.contact@gmail.com" className="text-accent">analyrics.contact@gmail.com</a>
         </p>
         <p className="pt-4 font-light">
           I maintain a large database of over 1M songs, artists, and albums for Analyrics. If you would like to support this project and keep it running and growing, please buy me a coffee at <a href="https://buymeacoffee.com/shahary" className="text-accent" target="_blank" rel="noopener noreferrer">buymeacoffee.com/shahary</a>

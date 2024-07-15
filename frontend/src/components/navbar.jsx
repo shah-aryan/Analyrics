@@ -1,19 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { HiHome } from 'react-icons/hi';
 import useSearch from '../hooks/useSearch';
-import { set } from 'mongoose';
 
 const NavBar = ({ title }) => {
   const { query, setQuery, results } = useSearch();
   const [isFocused, setIsFocused] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
+  const [showNotFound, setShowNotFound] = useState(false);
   const navigate = useNavigate();
+
+  const totalResults = () => {
+    return results.artists.length + results.albums.length + results.songs.length;
+  };
 
   const handleSearch = (e) => {
     setQuery(e.target.value);
     setHighlightedIndex(-1);
   };
+
+  useEffect(() => {
+    let timer;
+    if (query && totalResults() === 0) {
+      timer = setTimeout(() => setShowNotFound(true), 500);
+    } else {
+      setShowNotFound(false);
+    }
+    return () => clearTimeout(timer);
+  }, [query, totalResults]);
 
   const handleKeyDown = (e) => {
     if (e.key === 'ArrowDown') {
@@ -24,10 +38,6 @@ const NavBar = ({ title }) => {
       const { type, id } = getItemTypeAndId(highlightedIndex);
       handleItemClick(type, id);
     }
-  };
-
-  const totalResults = () => {
-    return results.artists.length + results.albums.length + results.songs.length;
   };
 
   const getItemTypeAndId = (index) => {
@@ -43,10 +53,8 @@ const NavBar = ({ title }) => {
   };
 
   const handleItemClick = (type, id) => {
-    //navigate to loading page for a second and then go there
     navigate('/loading');
     setTimeout(() => navigate(`/${type}/${id}`), 50);
-    // navigate(`/${type}/${id}`);
   };
 
   return (
@@ -72,37 +80,49 @@ const NavBar = ({ title }) => {
               onBlur={() => setTimeout(() => setIsFocused(false), 100)} // Delay to allow click event
               onKeyDown={handleKeyDown}
             />
-            {isFocused && totalResults() > 0 && (
+            {isFocused && (
               <div className="absolute z-50 text-left top-full left-0 right-0 bg-black backdrop-blur-2xl w-full rounded-3xl p-4 text-white font-normal opacity-80">
-                <ul>
-                  {results.artists.slice(0, 20).map((artist, index) => (
-                    <li
-                      key={artist.artistId}
-                      onMouseDown={() => handleItemClick('artist', artist.artistId)}
-                      className={`cursor-pointer hover:bg-gray-700 p-2 rounded-md ${highlightedIndex === index ? 'bg-gray-700' : ''}`}
-                    >
-                      {"Artist: " + artist.name}
-                    </li>
-                  ))}
-                  {results.artists.length < 20 && results.albums.slice(0, 20 - results.artists.length).map((album, index) => (
-                    <li
-                      key={album.albumId}
-                      onMouseDown={() => handleItemClick('album', album.albumId)}
-                      className={`cursor-pointer hover:bg-gray-700 p-2 rounded-md ${highlightedIndex === index + results.artists.length ? 'bg-gray-700' : ''}`}
-                    >
-                      {"Album: " + album.name}
-                    </li>
-                  ))}
-                  {results.artists.length + results.albums.length < 20 && results.songs.slice(0, 20 - results.artists.length - results.albums.length).map((song, index) => (
-                    <li
-                      key={song.songId}
-                      onMouseDown={() => handleItemClick('album', `${song.albumId[0]}/${song.songId}`)}
-                      className={`cursor-pointer hover:bg-gray-700 p-2 rounded-md ${highlightedIndex === index + results.artists.length + results.albums.length ? 'bg-gray-700' : ''}`}
-                    >
-                      {"Song: " + song.name}
-                    </li>
-                  ))}
-                </ul>
+                {totalResults() > 0 ? (
+                  <ul>
+                    {results.artists.slice(0, 20).map((artist, index) => (
+                      <li
+                        key={artist.artistId}
+                        onMouseDown={() => handleItemClick('artist', artist.artistId)}
+                        className={`cursor-pointer hover:bg-gray-700 p-2 rounded-md ${highlightedIndex === index ? 'bg-gray-700' : ''}`}
+                      >
+                        {"Artist: " + artist.name}
+                      </li>
+                    ))}
+                    {results.artists.length < 20 && results.albums.slice(0, 20 - results.artists.length).map((album, index) => (
+                      <li
+                        key={album.albumId}
+                        onMouseDown={() => handleItemClick('album', album.albumId)}
+                        className={`cursor-pointer hover:bg-gray-700 p-2 rounded-md ${highlightedIndex === index + results.artists.length ? 'bg-gray-700' : ''}`}
+                      >
+                        {"Album: " + album.name}
+                      </li>
+                    ))}
+                    {results.artists.length + results.albums.length < 20 && results.songs.slice(0, 20 - results.artists.length - results.albums.length).map((song, index) => (
+                      <li
+                        key={song.songId}
+                        onMouseDown={() => handleItemClick('album', `${song.albumId[0]}/${song.songId}`)}
+                        className={`cursor-pointer hover:bg-gray-700 p-2 rounded-md ${highlightedIndex === index + results.artists.length + results.albums.length ? 'bg-gray-700' : ''}`}
+                      >
+                        {"Song: " + song.name}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  showNotFound && (
+                    <div className=" p-4">
+                      We don't have this in our database yet!<br />
+                      If you've spelled it correctly and would like to see it added, <br />
+                      Please send a request at <a href="mailto:analyrics.contact@gmail.com" className="text-accent underline">analyrics.contact@gmail.com</a>, and<br />
+                      Please support the project's growth at <a href="https://www.buymeacoffee.com/shahary" target="_blank" rel="noopener noreferrer" className="text-accent underline">buymeacoffee.com/shahary</a> <br />
+                      so we can continue adding more music!
+                    </div>
+                  )
+                )}
               </div>
             )}
           </div>

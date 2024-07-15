@@ -8,16 +8,22 @@ import TopFiveCard from '../components/top5card';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 import rankings from '../cache/rankings.json';
+import ScrollToTopButton from '../components/scrolltotop'; 
 
 const SearchPage = () => {
   const { query, setQuery, results } = useSearch();
   const [isFocused, setIsFocused] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showNotFound, setShowNotFound] = useState(false);
   const navigate = useNavigate();
   const vantaRef = useRef(null);
   const vantaEffect = useRef(null);
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 500);
+
+  const totalResults = () => {
+    return results.artists.length + results.albums.length + results.songs.length;
+  };
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -83,6 +89,16 @@ const SearchPage = () => {
     };
   }, []);
 
+  useEffect(() => {
+    let timer;
+    if (query && totalResults() === 0) {
+      timer = setTimeout(() => setShowNotFound(true), 500);
+    } else {
+      setShowNotFound(false);
+    }
+    return () => clearTimeout(timer);
+  }, [query, totalResults]);
+
   const handleSearch = (e) => {
     setQuery(e.target.value);
     setHighlightedIndex(-1);
@@ -97,10 +113,6 @@ const SearchPage = () => {
       const { type, id } = getItemTypeAndId(highlightedIndex);
       handleItemClick(type, id);
     }
-  };
-
-  const totalResults = () => {
-    return results.artists.length + results.albums.length + results.songs.length;
   };
 
   const getItemTypeAndId = (index) => {
@@ -145,37 +157,49 @@ const SearchPage = () => {
               onBlur={() => setTimeout(() => setIsFocused(false), 100)} // Delay to allow click event
               onKeyDown={handleKeyDown}
             />
-            {isFocused && totalResults() > 0 && (
-              <div className="absolute text-left top-full left-0 right-0 bg-black w-full rounded-3xl p-4 text-white opacity-50 font-normal max-h-80 overflow-auto">
-                <ul>
-                  {results.artists.slice(0, 20).map((artist, index) => (
-                    <li
-                      key={artist.artistId}
-                      onMouseDown={() => handleItemClick('artist', artist.artistId)}
-                      className={`cursor-pointer hover:bg-gray-700 p-2 rounded-md ${highlightedIndex === index ? 'bg-gray-700' : ''}`}
-                    >
-                      {"Artist: " + artist.name}
-                    </li>
-                  ))}
-                  {results.artists.length < 20 && results.albums.slice(0, 20 - results.artists.length).map((album, index) => (
-                    <li
-                      key={album.albumId}
-                      onMouseDown={() => handleItemClick('album', album.albumId)}
-                      className={`cursor-pointer hover:bg-gray-700 p-2 rounded-md ${highlightedIndex === index + results.artists.length ? 'bg-gray-700' : ''}`}
-                    >
-                      {"Album: " + album.name}
-                    </li>
-                  ))}
-                  {results.artists.length + results.albums.length < 20 && results.songs.slice(0, 20 - results.artists.length - results.albums.length).map((song, index) => (
-                    <li
-                      key={song.songId}
-                      onMouseDown={() => handleItemClick('album', `${song.albumId[0]}/${song.songId}`)}
-                      className={`cursor-pointer hover:bg-gray-700 p-2 rounded-md ${highlightedIndex === index + results.artists.length + results.albums.length ? 'bg-gray-700' : ''}`}
-                    >
-                      {"Song: " + song.name}
-                    </li>
-                  ))}
-                </ul>
+            {isFocused && query && (
+              <div className="absolute text-left top-full left-0 right-0 bg-black w-full rounded-3xl p-4 text-white opacity-75 font-normal max-h-80 overflow-auto">
+                {totalResults() > 0 ? (
+                  <ul>
+                    {results.artists.slice(0, 20).map((artist, index) => (
+                      <li
+                        key={artist.artistId}
+                        onMouseDown={() => handleItemClick('artist', artist.artistId)}
+                        className={`cursor-pointer hover:bg-gray-700 p-2 rounded-md ${highlightedIndex === index ? 'bg-gray-700' : ''}`}
+                      >
+                        {"Artist: " + artist.name}
+                      </li>
+                    ))}
+                    {results.artists.length < 20 && results.albums.slice(0, 20 - results.artists.length).map((album, index) => (
+                      <li
+                        key={album.albumId}
+                        onMouseDown={() => handleItemClick('album', album.albumId)}
+                        className={`cursor-pointer hover:bg-gray-700 p-2 rounded-md ${highlightedIndex === index + results.artists.length ? 'bg-gray-700' : ''}`}
+                      >
+                        {"Album: " + album.name}
+                      </li>
+                    ))}
+                    {results.artists.length + results.albums.length < 20 && results.songs.slice(0, 20 - results.artists.length - results.albums.length).map((song, index) => (
+                      <li
+                        key={song.songId}
+                        onMouseDown={() => handleItemClick('album', `${song.albumId[0]}/${song.songId}`)}
+                        className={`cursor-pointer hover:bg-gray-700 p-2 rounded-md ${highlightedIndex === index + results.artists.length + results.albums.length ? 'bg-gray-700' : ''}`}
+                      >
+                        {"Song: " + song.name}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  showNotFound && (
+                    <div className=" p-4">
+                      We don't have this in our database yet!<br />
+                      If you've spelled it correctly and would like to see it added, <br />
+                      Please send a request at <a href="mailto:analyrics.contact@gmail.com" className="text-accent underline">analyrics.contact@gmail.com</a>, and<br />
+                      Please support the project's growth at <a href="https://www.buymeacoffee.com/shahary" target="_blank" rel="noopener noreferrer" className="text-accent underline">buymeacoffee.com/shahary</a> <br />
+                      so we can continue adding more music!
+                    </div>
+                  )
+                )}
               </div>
             )}
           </div>
@@ -192,15 +216,15 @@ const SearchPage = () => {
               </svg>
             </div>
           </div>
-          <div className={`absolute bottom-8 right-8`}>
-            <CircleButton onClick={handleOpenModal} />
-          </div>
         </div>
       </div>
-      <div className="w-full flex justify-center items-center mt-24 mb-8" data-aos="fade-up">
+      <div className="w-full flex flex-col justify-center items-center mt-24" data-aos="fade-up">
         <h1 className="text-5xl font-bold text-center">
           The <span className="text-accent">Analyrics</span> Leaderboards
         </h1>
+        <h3 className="text-lg font-bold text-center mb-8">
+          Click on an artist's name to learn more about them!
+        </h3>
       </div>
       <div className="container mx-auto p-4 w-full">
         <Routes>
@@ -251,12 +275,18 @@ const SearchPage = () => {
               <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
                 <TopFiveCard items={rankings.most_disgust_in_lyrics} type="artist" title="Most Disgust in Lyrics" label=" %"/>
               </div>
+              <div className='flex flex-row justify-center items-center w-full mt-4 mb-8'>
+                <ScrollToTopButton />
+              </div>
             </div>
           } />
           <Route path="/song/:id" element={<div>Song ID: {window.location.pathname.split('/').pop()}</div>} />
           <Route path="/album/:id" element={<div>Album ID: {window.location.pathname.split('/').pop()}</div>} />
           <Route path="/artist/:id" element={<div>Artist ID: {window.location.pathname.split('/').pop()}</div>} />
         </Routes>
+      </div>
+      <div className={`fixed bottom-8 right-8`}>
+        <CircleButton onClick={handleOpenModal} />
       </div>
     </div>
   );
