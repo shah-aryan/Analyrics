@@ -192,7 +192,7 @@ const SearchPage = () => {
               </svg>
             </div>
           </div>
-          <div className={`absolute ${isSmallScreen ? 'bottom-8' : 'bottom-8'} right-8`}>
+          <div className={`absolute bottom-8 right-8`}>
             <CircleButton onClick={handleOpenModal} />
           </div>
         </div>
