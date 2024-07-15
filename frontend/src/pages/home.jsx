@@ -204,7 +204,7 @@ const SearchPage = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
               </svg>
             </div>
-            <p className="text-info tracking-wide text-sm font-bold">Scroll down to see the leaderboards</p>
+            <p className="text-info tracking-wide text-sm font-bold">Scroll for leaderboards</p>
             <div className="animate-bounce">
               <svg className="w-4 h-4 text-info mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
@@ -241,13 +241,13 @@ const SearchPage = () => {
                 <TopFiveCard items={rankings.largest_vocabulary} type="artist" title="Largest Vocabulary" label=" words"/>
               </div>
               <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
+                <TopFiveCard items={rankings.most_repetitive} type="artist" title="Most Repetitive" />
+              </div>
+              <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
                 <TopFiveCard items={rankings.most_collaborative} type="artist" title="Most Collaborative" label=" collabs"/>
               </div>
               <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
                 <TopFiveCard items={rankings.highest_reading_level} type="artist" title="Highest Reading Level" />
-              </div>
-              <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
-                <TopFiveCard items={rankings.most_repetitive} type="artist" title="Most Repetitive" />
               </div>
               <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
                 <TopFiveCard items={rankings.longest_songs} type="artist" title="Longest Songs" label=" words"/>
