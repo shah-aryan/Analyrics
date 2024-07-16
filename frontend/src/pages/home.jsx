@@ -16,7 +16,7 @@ const SearchPage = () => {
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showNotFound, setShowNotFound] = useState(false);
-  const [showScrollDown, setShowScrollDown] = useState(false); // New state
+  const [showScrollDown, setShowScrollDown] = useState(false); 
   const navigate = useNavigate();
   const vantaRef = useRef(null);
   const vantaEffect = useRef(null);
@@ -93,7 +93,7 @@ const SearchPage = () => {
   useEffect(() => {
     let timer;
     if (query && totalResults() === 0) {
-      timer = setTimeout(() => setShowNotFound(true), 500);
+      timer = setTimeout(() => setShowNotFound(true), 1000);
     } else {
       setShowNotFound(false);
     }
@@ -160,7 +160,7 @@ const SearchPage = () => {
               value={query}
               onChange={handleSearch}
               onFocus={() => setIsFocused(true)}
-              onBlur={() => setTimeout(() => setIsFocused(false), 100)} // Delay to allow click event
+              onBlur={() => setTimeout(() => setIsFocused(false), 100)}  
               onKeyDown={handleKeyDown}
             />
             {isFocused && query && (
@@ -227,11 +227,11 @@ const SearchPage = () => {
         </div>
       </div>
       <div className="w-full flex flex-col justify-center items-center mt-24" data-aos="fade-up">
-        <h1 className="text-5xl font-bold text-center">
+        <h1 className="text-5xl font-bold text-center mx-8">
           The <span className="text-accent">Analyrics</span> Leaderboards
         </h1>
-        <h3 className="text-lg font-bold text-center mb-8">
-          Click on an artist's name to learn more about them!
+        <h3 className="text-xl font-normal text-center mt-1 mb-8 tracking-wide mx-8">
+          Click on an artist's name to learn more about them, <br/> or hover over the info icon for calculation details!
         </h3>
       </div>
       <div className="container mx-auto p-4 w-full">
@@ -239,53 +239,54 @@ const SearchPage = () => {
           <Route path="/" element={
             <div className="flex flex-wrap w-full items-center justify-center">
               <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
-                <TopFiveCard items={rankings.largest_vocabulary} type="artist" title="Largest Vocabulary" label=" words"/>
+                <TopFiveCard items={rankings.largest_vocabulary} rankings title="Largest Vocabulary" label=" words" info='Number of Unique Words in discography'/>
               </div>
               <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
-                <TopFiveCard items={rankings.most_repetitive} type="artist" title="Most Repetitive" />
+                <TopFiveCard items={rankings.most_repetitive} rankings title="Most Repetitive" shownum={false} info='A ratio of number of unique words to number of total words'/>
               </div>
               <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
-                <TopFiveCard items={rankings.most_collaborative} type="artist" title="Most Collaborative" label=" collabs"/>
+                <TopFiveCard items={rankings.most_collaborative} rankings title="Most Collaborative" label=" collabs" info="Total number of collaborations in this artist's discography"/>
               </div>
               <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
-                <TopFiveCard items={rankings.highest_reading_level} type="artist" title="Highest Reading Level" />
+                <TopFiveCard items={rankings.highest_reading_level} rankings title="Highest Reading Level" info='Reading level calculated using Dale-Chall readability formula - the best formula for lyrics observed through testing'/>
               </div>
               <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
-                <TopFiveCard items={rankings.longest_songs} type="artist" title="Longest Songs" label=" words"/>
+                <TopFiveCard items={rankings.longest_songs} rankings title="Longest Songs" label=" words" info='Average number of words per song'/>
               </div>
               <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
-                <TopFiveCard items={rankings.most_positive_lyrics} type="artist" title="Most Positive Lyrics" label=" %"  />
+                <TopFiveCard items={rankings.most_positive_lyrics} rankings title="Most Positive Lyrics" label=" %" info='A ratio of positive lyrics over both positive and negative lyrics'/>
               </div>
               <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
-                <TopFiveCard items={rankings.most_negative_lyrics} type="artist" title="Most Negative Lyrics" label=" %" />
+                <TopFiveCard items={rankings.most_negative_lyrics} rankings title="Most Negative Lyrics" label=" %" info='A ratio of negative lyrics over both positive and negative lyrics'/>
               </div>
               <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
-                <TopFiveCard items={rankings.most_trusting_lyrics} type="artist" title="Most Trusting Lyrics" label=" %"/>
+                <TopFiveCard items={rankings.most_trusting_lyrics} rankings title="Most Trusting Lyrics" label=" %" info='A ratio of trusting lyrics over total lyrics'/>
               </div>
               <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
-                <TopFiveCard items={rankings.most_fearful_lyrics} type="artist" title="Most Fearful Lyrics" label=" %"/>
+                <TopFiveCard items={rankings.most_fearful_lyrics} rankings title="Most Fearful Lyrics" label=" %" info='A ratio of fearful lyrics over total lyrics'/>
               </div>
               <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
-                <TopFiveCard items={rankings.most_surprise_in_lyrics} type="artist" title="Most Surprise in Lyrics" label=" %"/>
+                <TopFiveCard items={rankings.most_surprise_in_lyrics} rankings title="Most Surprise in Lyrics" label=" %" info='A ratio of surprise lyrics over total lyrics'/>
               </div>
               <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
-                <TopFiveCard items={rankings.most_joyous_lyrics} type="artist" title="Most Joyous Lyrics" label=" %"/>
+                <TopFiveCard items={rankings.most_joyous_lyrics} rankings title="Most Joyous Lyrics" label=" %" info='A ratio of joyous lyrics over total lyrics'/>
               </div>
               <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
-                <TopFiveCard items={rankings.most_anticipation_in_lyrics} type="artist" title="Most Anticipation in Lyrics" label=" %"/>
+                <TopFiveCard items={rankings.most_anticipation_in_lyrics} rankings title="Most Anticipation in Lyrics" label=" %" info='A ratio of anticipation lyrics over total lyrics'/>
               </div>
               <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
-                <TopFiveCard items={rankings.most_anger_in_lyrics} type="artist" title="Most Anger in Lyrics" label=" %"/>
+                <TopFiveCard items={rankings.most_anger_in_lyrics} rankings title="Most Anger in Lyrics" label=" %" info='A ratio of anger lyrics over total lyrics'/>
               </div>
               <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
-                <TopFiveCard items={rankings.most_sad_lyrics} type="artist" title="Most Sad Lyrics" label=" %"/>
+                <TopFiveCard items={rankings.most_sad_lyrics} rankings title="Most Sad Lyrics" label=" %" info='A ratio of sad lyrics over total lyrics'/>
               </div>
               <div className="w-full md:w-2/5 lg:w-1/4 xl:w-1/5 px-2 m-4" data-aos="fade-up">
-                <TopFiveCard items={rankings.most_disgust_in_lyrics} type="artist" title="Most Disgust in Lyrics" label=" %"/>
+                <TopFiveCard items={rankings.most_disgust_in_lyrics} rankings title="Most Disgust in Lyrics" label=" %" info='A ratio of disgust lyrics over total lyrics'/>
               </div>
               <div className='flex flex-row justify-center items-center w-full mt-4 mb-8'>
                 <ScrollToTopButton />
               </div>
+
             </div>
           } />
           <Route path="/song/:id" element={<div>Song ID: {window.location.pathname.split('/').pop()}</div>} />

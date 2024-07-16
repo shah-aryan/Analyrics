@@ -121,17 +121,19 @@ export default {
         mytheme: {
           'accent': '#A290FC',
           'primary': '#FF00FF',
-          'secondary': '#00FF00',
-          'neutral': '#00FFFF',
-          'base-100': '#050505', //background
+          'secondary': '#191919',
+          'neutral': '#191919',
+          'base-100': '#000000', //background
           'base-200': '#101010', //card1
           'base-300': '#191919', //card2 and outline
-          'neutral-content': '#323232', //card3
+          'neutral-content': '#000000', //card3
           'info-content': '#282828', //card4
           'base-content': '#E6E6E6', //text1
           'info': '#999999', //text2
           'success': '#ADADAD', //listcard icon
           'warning': '#979797', //listcard text
+          'error': '#191919', 
+          'error-content': '#FFFFFF', 
         },
       },
     ],
