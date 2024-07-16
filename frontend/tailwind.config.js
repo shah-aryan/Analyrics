@@ -121,12 +121,12 @@ export default {
         mytheme: {
           'accent': '#A290FC',
           'primary': '#FF00FF',
-          'secondary': '#191919',
-          'neutral': '#191919',
-          'base-100': '#000000', //background
+          'secondary': '#00FF00',
+          'neutral': '#00FFFF',
+          'base-100': '#050505', //background
           'base-200': '#101010', //card1
           'base-300': '#191919', //card2 and outline
-          'neutral-content': '#000000', //card3
+          'neutral-content': '#323232', //card3
           'info-content': '#282828', //card4
           'base-content': '#E6E6E6', //text1
           'info': '#999999', //text2
