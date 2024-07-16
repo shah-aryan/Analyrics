@@ -16,6 +16,7 @@ const SearchPage = () => {
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showNotFound, setShowNotFound] = useState(false);
+  const [showScrollDown, setShowScrollDown] = useState(false); // New state
   const navigate = useNavigate();
   const vantaRef = useRef(null);
   const vantaEffect = useRef(null);
@@ -98,6 +99,11 @@ const SearchPage = () => {
     }
     return () => clearTimeout(timer);
   }, [query, totalResults]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowScrollDown(true), 5000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleSearch = (e) => {
     setQuery(e.target.value);
@@ -203,19 +209,21 @@ const SearchPage = () => {
               </div>
             )}
           </div>
-          <div className={`absolute ${isSmallScreen ? 'bottom-24' : 'bottom-16'} font-medium flex items-center justify-center space-x-2`}>
-            <div className="animate-bounce">
-              <svg className="w-4 h-4 text-info mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-              </svg>
+          {showScrollDown && (
+            <div className={`absolute ${isSmallScreen ? 'bottom-24' : 'bottom-16'} font-medium flex items-center justify-center space-x-2`}>
+              <div className="animate-bounce">
+                <svg className="w-4 h-4 text-info mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </div>
+              <p className="text-info tracking-wide text-sm font-bold">Scroll for leaderboards</p>
+              <div className="animate-bounce">
+                <svg className="w-4 h-4 text-info mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </div>
             </div>
-            <p className="text-info tracking-wide text-sm font-bold">Scroll for leaderboards</p>
-            <div className="animate-bounce">
-              <svg className="w-4 h-4 text-info mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </div>
-          </div>
+          )}
         </div>
       </div>
       <div className="w-full flex flex-col justify-center items-center mt-24" data-aos="fade-up">
