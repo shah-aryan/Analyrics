@@ -153,12 +153,12 @@ const SearchPage = () => {
         <div ref={vantaRef} className="h-full font-bold text-white flex flex-col items-center justify-center bg-base-100 p-8" data-aos="fade-up">
           <AboutMeModal isOpen={isModalOpen} onClose={handleCloseModal} />
           <h1 className="md:text-10xl sm:text-8xl text-6xl">Analyrics</h1>
-          <h2 className="text-xs sm:text-sm md:text-md font-bold text-center mb-6 sm:tracking-wide">Intelligent, Beautiful, and Unique Lyrics Analysis</h2>
-          <div className="form-control w-full max-w-md text-white text-center relative mb-4">
+          <h2 className="text-xs sm:text-sm md:text-md font-bold text-center mb-5 sm:tracking-wide text-white">Intelligent, Beautiful, and Unique Lyrics Analysis</h2>
+          <div className="form-control w-full max-w-md text-gray text-center relative mb-4 ">
             <input
               type="text"
               placeholder="Search for artists, albums, or songs..."
-              className="input input-bordered border-white border-2 w-full rounded-3xl opacity-75 text-white"
+              className="input input-bordered border-2 w-full rounded-3xl opacity-100 text-white"
               value={query}
               onChange={handleSearch}
               onFocus={() => setIsFocused(true)}
@@ -166,7 +166,7 @@ const SearchPage = () => {
               onKeyDown={handleKeyDown}
             />
             {isFocused && query && (
-              <div className="absolute text-left top-full left-0 right-0 bg-black w-full rounded-3xl p-4 text-white opacity-75 font-normal max-h-80 overflow-auto">
+              <div className="absolute text-left top-full left-0 right-0 bg-black w-full rounded-3xl p-4 text-white opacity-75 font-normal max-h-80 overflow-auto ">
                 {totalResults() > 0 ? (
                   <ul>
                     {results.artists.slice(0, 20).map((artist, index) => (
