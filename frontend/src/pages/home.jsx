@@ -9,6 +9,7 @@ import 'aos/dist/aos.css';
 import AOS from 'aos';
 import rankings from '../cache/rankings.json';
 import ScrollToTopButton from '../components/scrolltotop'; 
+import { popularArtists } from '../cache/popularArtists';
 
 const SearchPage = () => {
   const { query, setQuery, results } = useSearch();
@@ -27,7 +28,7 @@ const SearchPage = () => {
   };
 
   useEffect(() => {
-    AOS.init({ duration: 1000 });
+    AOS.init({ duration: 2000 });
 
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth < 500);
@@ -101,7 +102,7 @@ const SearchPage = () => {
   }, [query, totalResults]);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowScrollDown(true), 5000);
+    const timer = setTimeout(() => setShowScrollDown(true), 1);
     return () => clearTimeout(timer);
   }, []);
 
@@ -152,11 +153,12 @@ const SearchPage = () => {
         <div ref={vantaRef} className="h-full font-bold text-white flex flex-col items-center justify-center bg-base-100 p-8" data-aos="fade-up">
           <AboutMeModal isOpen={isModalOpen} onClose={handleCloseModal} />
           <h1 className="md:text-10xl sm:text-8xl text-6xl">Analyrics</h1>
-          <div className="form-control w-full max-w-md text-white text-center relative mb-16">
+          <h2 className="text-xs sm:text-sm md:text-md font-bold text-center mb-6 sm:tracking-wide">Intelligent, Beautiful, and Unique Lyrics Analysis</h2>
+          <div className="form-control w-full max-w-md text-white text-center relative mb-4">
             <input
               type="text"
               placeholder="Search for artists, albums, or songs..."
-              className="input input-bordered w-full rounded-3xl opacity-75 text-white"
+              className="input input-bordered border-white border-2 w-full rounded-3xl opacity-75 text-white"
               value={query}
               onChange={handleSearch}
               onFocus={() => setIsFocused(true)}
@@ -208,6 +210,8 @@ const SearchPage = () => {
                 )}
               </div>
             )}
+          </div>
+          <div className="flex flex-col items-center justify-center mb-16">
           </div>
           {showScrollDown && (
             <div className={`absolute ${isSmallScreen ? 'bottom-24' : 'bottom-16'} font-medium flex items-center justify-center space-x-2`}>
