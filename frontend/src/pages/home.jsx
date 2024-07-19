@@ -94,7 +94,7 @@ const SearchPage = () => {
   useEffect(() => {
     let timer;
     if (query && totalResults() === 0) {
-      timer = setTimeout(() => setShowNotFound(true), 1000);
+      timer = setTimeout(() => setShowNotFound(true), 2500);
     } else {
       setShowNotFound(false);
     }
