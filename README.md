@@ -55,4 +55,4 @@
 
 ## Contact
 
-Aryan Shah - [LinkedIn](https://www.linkedin.com/in/aryan-shah)
+Aryan Shah - [LinkedIn](https://www.linkedin.com/in/aryanshah1/)
