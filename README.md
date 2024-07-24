@@ -41,14 +41,6 @@
 1. Navigate to `http://localhost:3000` in your web browser.
 2. Explore various analysis tools and visualizations.
 
-## Contributing
-
-1. Fork the repository.
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-4. Push to the branch (`git push origin feature/AmazingFeature`).
-5. Open a pull request.
-
 ## Acknowledgments
 
 - Thanks to all contributors and open-source libraries that made this project possible.
